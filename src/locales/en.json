@@ -162,9 +162,10 @@
             "REWARDS_DISCIPLINE": "Rewards - Disciplines",
             "NOTIFICATIONS_EVENTS": "Notifications - Events",
             "REPORTS_SYSTEM": "Reports - System",
-            "ATTENDANCE": "Attendance",
+            "POST": "Post",
             "WORKHISTORY": "Work History",
-            "CREATETASKS": "Create tasks"
+            "CREATETASKS": "Create tasks",
+            "TOTAL_POST": "Total posts"
         },
         "MODE": {
             "LIGHT": "Light",
@@ -521,7 +522,17 @@
             "HOLIDAY": "Holiday",
             "ACCEPT": "Accept"
         },
-
+        "POST": {
+            "TOTAL_POST": "Total posts",
+            "TITLE_CHART": " Statistics of number of posts",
+            "TOTAL_USER_POST": "Total users post",
+            "TITLE_TABLE": "List of posts",
+            "FULL_NAME": "Full Name",
+            "COUNT_POST": "Count Post",
+            "COUNT_LIKE": "Count Like",
+            "COUNT_SHARE": "Count Share",
+            "TITLE_TOP_RANKING": "Top ranking"
+        },
         "EMPLOYEE": {
             "FULLNAME": "Full Name",
             "EMAIL": "Email",
@@ -559,7 +570,6 @@
                 }
             }
         },
-
         "JOBHISTORY": {
             "STARTDATE": "Start Date",
             "ENDDATE": "End Date",
@@ -570,7 +580,6 @@
             "CREATE_NEW_JOB": "Create New Job",
             "ASSIGNEE": "Job Recipient"
         },
-
         "TIMEOFF": {
             "TIMEOFF": "Time Off List",
             "INFORMATION": "Employee Information",

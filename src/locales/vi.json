@@ -161,9 +161,10 @@
       "REWARDS_DISCIPLINE": "Test",
       "NOTIFICATIONS_EVENTS": "Test",
       "REPORTS_SYSTEM": "Báo cáo - Hệ thống",
-      "ATTENDANCE": "Test",
+      "POST": "Bài đăng",
       "WORKHISTORY": "Lịch sử công tác",
-      "CREATETASKS": "Tạo công tác"
+      "CREATETASKS": "Tạo công tác",
+      "TOTAL_POST": "Tổng bài đăng"
     },
     "MODE": {
       "LIGHT": "Sáng",
@@ -428,7 +429,17 @@
       "TYPE": "Loại",
       "STATUS": "Trạng thái"
     },
-
+    "POST": {
+      "TOTAL_POST": "Tổng số lượng bài đăng",
+      "TITLE_CHART": " Thống kê số lượng bài đăng",
+      "TOTAL_USER_POST": "Tổng số người dùng đăng bài",
+      "TITLE_TABLE": "Danh sách bài đăng",
+      "FULL_NAME": "Họ và tên",
+      "COUNT_POST": "Số lượng bài đăng",
+      "COUNT_LIKE": "Số lượng thích",
+      "COUNT_SHARE": "Số lượng chia sẻ",
+      "TITLE_TOP_RANKING": "Top bài đăng"
+    },
     "EMPLOYEE": {
       "FULLNAME": "Họ và tên",
       "EMAIL": "Email",
@@ -466,7 +477,6 @@
         }
       }
     },
-
     "JOBHISTORY": {
       "STARTDATE": "Ngày bắt đầu",
       "ENDDATE": "Ngày kết thúc",
@@ -477,7 +487,6 @@
       "CREATE_NEW_JOB": "Tạo công tác mới",
       "ASSIGNEE": "Người nhận công tác"
     },
-
     "TIMEOFF": {
       "TIMEOFF": "Danh sách nghỉ phép",
       "INFORMATION": "Thông tin nhân viên",
@@ -512,7 +521,6 @@
       "ACCEPT": "Đồng ý",
       "REPORT_ERROR": "Báo cáo sai sót"
     },
-
     "CONTRACT": {
       "INFORMATION": "Thông tin nhân viên",
       "INFORMATIONMANAGER": "Thông tin quản lí",
@@ -551,7 +559,6 @@
       "ACCEPT": "Đồng ý",
       "REPORT_ERROR": "Báo cáo sai sót"
     },
-
     "ERROR_REPORT": {
       "ERROR_REPORT": "Điền thông tin báo lỗi",
       "TITLE": "Danh sách báo cáo lỗi",
@@ -739,7 +746,6 @@
       "RETURN_LOGIN": "Quay lại đăng nhập",
       "NOT_FOUND": "Không tìm thấy email",
       "SEND_SUCCESS": "Gửi yêu cầu thành công",
-
       "WAIT_BEFORE_RETRY": "Vui lòng chờ {{countdown}} giây trước khi thử lại!"
     },
     "VERIFY": {

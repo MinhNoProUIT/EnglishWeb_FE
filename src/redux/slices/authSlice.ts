@@ -22,7 +22,7 @@ const initialState: MenuLeftState = {
   Contract: { IsAllowView: true },
   Salary: { IsAllowView: true },
   Schedular: { IsAllowView: true },
-  Attendance: { IsAllowView: true },
+  Post: { IsAllowView: true },
   "Time off": { IsAllowView: true },
   Permission: { IsAllowView: true },
   Department: { IsAllowView: true },
@@ -35,7 +35,7 @@ const initialState: MenuLeftState = {
   Configuration: { IsAllowView: true },
 
   // Thêm mock cho submenu nếu cần
-  "/admin/statistics/attendance": { IsAllowView: true },
+  "/statistics/post": { IsAllowView: true },
   "/admin/statistics/benefits": { IsAllowView: true },
   "/admin/statistics/salary": { IsAllowView: true },
   "/admin/statistics/employee-contract": { IsAllowView: true },

@@ -108,7 +108,7 @@ function TableErrorReport({ errorsData, totalRecords, type, onSort }: IProps) {
     //     setOpenModal(true)
     // }
 
-    useEffect(() => {}, [
+    useEffect(() => { }, [
         totalRecords,
         type,
         selected,
@@ -468,10 +468,10 @@ function TableErrorReport({ errorsData, totalRecords, type, onSort }: IProps) {
                                             {row?.Status === '1'
                                                 ? 'In Progress'
                                                 : row?.Status === '2'
-                                                  ? 'Resolved'
-                                                  : row?.Status === '3'
-                                                    ? 'Rejected'
-                                                    : 'Pending'}
+                                                    ? 'Resolved'
+                                                    : row?.Status === '3'
+                                                        ? 'Rejected'
+                                                        : 'Pending'}
                                         </Typography>
                                     </Box>
                                 </TableCell>
