@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import {
   ChartNoAxesCombined,
+  NotepadText,
   Users,
   FileSignature,
   Stethoscope,
@@ -35,6 +36,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { t } = useTranslation("common");
 
   const menuLeft = useSelector(authSelector);
+
+  console.log(Object.keys(menuLeft));
+console.log(menuLeft["/statistics/post"]);
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
@@ -58,15 +62,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             // route='/statistics'
             // active={pathname === '/statistics'}
           >
-            {menuLeft["/admin/statistics/attendance"].IsAllowView && (
+            {menuLeft["/statistics/post"]?.IsAllowView && (
               <SidebarItem
-                icon={<ChartNoAxesCombined />}
-                text={t("COMMON.SIDEBAR.ATTENDANCE")}
-                route="/admin/statistics/attendance"
-                active={pathname === "/admin/statistics/attendance"}
+                icon={<NotepadText />}
+                text={t("COMMON.SIDEBAR.POST")}
+                route="/statistics/post"
+                active={pathname === "/statistics/post"}
               />
             )}
-            {menuLeft["/admin/statistics/benefits"].IsAllowView && (
+            {/* {menuLeft["/admin/statistics/benefits"].IsAllowView && (
               <SidebarItem
                 icon={<ChartNoAxesCombined />}
                 text={t("COMMON.SIDEBAR.BENEFITS")}
@@ -105,7 +109,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 route="/admin/statistics/rewards-disciplines"
                 active={pathname === "/admin/statistics/rewards-disciplines"}
               />
-            )}
+            )} */}
             {menuLeft["/admin/statistics/notifications-events"].IsAllowView && (
               <SidebarItem
                 icon={<ChartNoAxesCombined />}
