@@ -147,12 +147,16 @@ function TablePost() {
     const [orderBy, setOrderBy] = useState<string>("");
     const [openModal, setOpenModal] = useState(false);
 
-    const paginatedData = mockPosts.slice(
+    const filteredData = mockPosts.filter((post) =>
+        post.createdBy.toLowerCase().includes(filter.keyword.toLowerCase())
+    );
+
+    const paginatedData = filteredData.slice(
         (page - 1) * Number(rowsPerPage),
         page * Number(rowsPerPage)
     );
     const postsData: IPostListItem[] = paginatedData;
-    const totalRecords = mockPosts.length;
+    const totalRecords = filteredData.length;
 
     const handleSort = (property: string) => {
         setFilter((prev) => ({

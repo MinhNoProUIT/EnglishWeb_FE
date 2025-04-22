@@ -1,8 +1,8 @@
-"use client";
-
-import { IPostListItem } from '@/interfaces/post.interface';
-import { Box, List, ListItem, Typography, Avatar, Paper } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { Avatar, Box, Paper, Typography } from "@mui/material";;
+import { useTranslation } from "react-i18next";
+import { Star } from "lucide-react";
+import { IPostListItem } from "@/interfaces/post.interface";
+import Image from "next/image";
 
 const mockPosts: IPostListItem[] = [
   {
@@ -88,171 +88,581 @@ const aggregateEmployees = () => {
         id: post.createdById,
         name: post.createdBy,
         avatar: post.createdByAvatar,
-        count: post.likesCount,
+        count: post.totalPosts,
       });
     } else {
       const existing = map.get(post.createdById)!;
-      existing.count += post.likesCount;
+      existing.count += post.totalPosts;
     }
   }
 
   return Array.from(map.values()).sort((a, b) => b.count - a.count);
 };
 
-const RankLike = () => {
-  const { t } = useTranslation('common')
+function RankLike() {
+  const { t } = useTranslation("common");
 
   const employees = aggregateEmployees();
-  const topThree = employees.slice(0, 3);
 
   const topFive = mockPosts
-    .sort((a, b) => b.likesCount - a.likesCount)
+    .sort((a, b) => b.totalPosts - a.totalPosts)
     .slice(0, 5)
     .map((item) => ({
       id: item.id,
       name: item.createdBy,
       avatar: item.createdByAvatar,
-      count: item.likesCount,
+      count: item.totalPosts,
     }));
 
-  const podiumOrder = [
-    topThree[1] || null, // 2nd place
-    topThree[0] || null, // 1st place
-    topThree[2] || null, // 3rd place
-  ];
-
-  const podiumHeights = [128, 160, 96]; // pixel heights for 2nd, 1st, 3rd
-
-  const getMedalIcon = (position) => {
-    if (position === 1) return '👑';
-    if (position === 2) return '🥈';
-    if (position === 3) return '🥉';
-    return null;
-  };
-
-
-
   return (
-    <Paper elevation={4} sx={{ width: '100%', maxWidth: 420, bgcolor: 'primary.main', borderRadius: 2, overflow: 'hidden' }}>
-      {/* Header + Tabs */}
-      <Box sx={{ p: 2 }}>
-        <Typography textAlign="center" variant="h6" color="white" fontWeight="bold"> {t('COMMON.POST.TITLE_TOP_RANKING')}</Typography>
-      </Box>
+    <Box width="30%">
+      <Paper
+        sx={{
+          width: "100%",
+          height: "100%",
+          boxShadow: "var(--box-shadow-paper)",
+          overflow: "hidden",
+          borderRadius: "20px",
+          backgroundColor: "#6A5AE0",
+        }}
+      >
+        <Typography
+          variant="h5"
+          sx={{
+            padding: "24px 24px 15px 24px",
+            fontSize: "18px",
+            fontWeight: "bold",
+            color: "white",
+          }}
+        >
+          {t("COMMON.POST.TITLE_TOP_RANKING")}
+        </Typography>
 
-      {/* Podium */}
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'end', bgcolor: 'primary.light', px: 2, pt: 6 }}>
-        {podiumOrder.map((employee, index) => {
-          if (!employee) return <Box key={index} flex={1} />;
+        <Box>
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              position: "relative",
+            }}
+          >
+            <Image
+              src="/images/group8.svg"
+              alt="Group"
+              width={100}
+              height={100}
+              style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                zIndex: 1,
+              }}
+            />
 
-          const position = [2, 1, 3][index];
-          const height = podiumHeights[index];
+            <Image
+              src="/images/ovalCopy.svg"
+              alt="Oval"
+              width={80}
+              height={80}
+              style={{
+                position: 'absolute',
+                top: 95,
+                right: 120,
+                zIndex: 2,
+              }}
+            />
 
-          return (
-            <Box key={employee.id} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 1 }}>
-              {/* Avatar + Medal */}
-              <Box sx={{ position: 'relative', mb: 1 }}>
-                <Avatar
-                  src={employee.avatar || undefined}
+            <Box
+              sx={{
+                width: "100%",
+                height: "100%",
+                position: "relative",
+                display: "flex", // Sử dụng Flexbox
+                flexDirection: "column", // Đặt các phần tử con theo chiều dọc
+              }}
+            >
+              <Box
+                sx={{
+                  width: "100%",
+                  padding: "24px",
+                  height: "400px",
+                  position: "relative",
+                }}
+              >
+                <Box
                   sx={{
-                    width: 56,
-                    height: 56,
-                    border: '3px solid',
-                    borderColor:
-                      position === 1 ? 'warning.main' :
-                        position === 2 ? 'grey.400' :
-                          'orange',
-                    boxShadow: 3
+                    display: "flex",
+                    justifyContent: "center",
+                    height: "100%",
+                    mt: "175px",
+                    mr: "44px",
                   }}
                 >
-                  {!employee.avatar && '👤'}
-                </Avatar>
-                <Box sx={{ position: 'absolute', top: -10, right: -10, fontSize: 20 }}>
-                  {getMedalIcon(position)}
+                  <Box
+                    sx={{
+                      width: "calc(100% / 3)",
+                      height: "100%",
+                      position: "relative",
+                      mt: "-30px",
+                      backgroundImage: "url(/images/rank-2.svg)",
+                      backgroundSize: "contain",
+                      backgroundPosition: "center top",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: "60px",
+                        height: "60px",
+                        position: "absolute",
+                        left: "calc(50%)",
+                        borderRadius: "50%",
+                        transform: "translateX(-50%)",
+                        top: "-145px",
+                        border: "2px solid #00D95F",
+                        zIndex: 1,
+                        overflow: "visible", // Cho phép phần tử con thoát ra ngoài
+                        // Thêm ::after để tạo hình vuông
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          bottom: "-8px", // Đặt hình vuông vào cuối avatar
+                          left: "50%", // Căn giữa hình vuông
+                          width: "17px", // Kích thước hình vuông
+                          height: "17px",
+                          borderRadius: "4px", // Bo tròn hình vuông
+                          backgroundColor: "#00D95F", // Màu nền của hình vuông
+                          transform: "translateX(-50%) rotate(45deg)", // Xoay hình vuông 45 độ
+                          zIndex: 2, // Đặt hình vuông phía sau avatar
+                        },
+                        "&::before": {
+                          content: '"2"', // Nội dung hiển thị số 1
+                          position: "absolute",
+                          bottom: "-5px", // Đặt số 1 vào cùng vị trí với hình vuông
+                          left: "50%", // Căn giữa số 1
+                          transform: "translateX(-50%)", // Đảm bảo số 1 không bị xoay
+                          zIndex: 3, // Đặt số 1 lên trên hình vuông
+                          display: "flex", // Sử dụng flex để căn giữa
+                          justifyContent: "center", // Căn giữa theo chiều ngang
+                          alignItems: "center", // Căn giữa theo chiều dọc
+                          fontSize: "10px", // Kích thước chữ
+                          color: "white", // Màu chữ
+                          fontWeight: "bold", // Đậm chữ
+                        },
+                      }}
+                    >
+                      <Avatar
+                        src={employees[1]?.avatar}
+                        sx={{
+                          position: "absolute",
+                          width: "60px",
+                          height: "60px",
+                        }}
+                      ></Avatar>
+                    </Box>
+                    <Typography
+                      sx={{
+                        position: "absolute",
+                        right: "50%",
+                        transform: "translateX(50%)",
+                        fontSize: "15px",
+                        fontWeight: "bold",
+                        color: "white",
+                        top: "-70px",
+                      }}
+                    >
+                      {employees[1]?.name}
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        position: "absolute",
+                        right: "50%",
+                        fontSize: "16px",
+                        color: "white",
+                        borderRadius: "8px",
+                        padding: "4px 7px",
+                        whiteSpace: "nowrap",
+                        backgroundColor: "#9087E5",
+                        fontWeight: "bold",
+                        transform: "translateX(50%)",
+                        top: "-40px",
+                      }}
+                    >
+                      {employees[1].count + " " + t("COMMON.POST.COUNT_POSTS")}
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      backgroundImage: "url(/images/rank-1.svg)", // Gradient nền mượt mà
+                      width: "calc(100% / 3)",
+                      height: "100%",
+                      mt: "-60px",
+                      zIndex: 2,
+                      backgroundSize: "contain",
+                      backgroundPosition: "center top",
+                      backgroundRepeat: "no-repeat",
+                      position: "relative",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: "70px",
+                        height: "70px",
+                        position: "absolute",
+                        left: "50%",
+                        borderRadius: "50%",
+                        transform: "translateX(-50%)",
+                        top: "-155px",
+                        border: "2px solid #FFAA00",
+                        zIndex: 1,
+                        overflow: "visible", // Cho phép phần tử con thoát ra ngoài
+                        // Thêm ::after để tạo hình vuông
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          bottom: "-8px", // Đặt hình vuông vào cuối avatar
+                          left: "50%", // Căn giữa hình vuông
+                          width: "17px", // Kích thước hình vuông
+                          height: "17px",
+                          borderRadius: "4px", // Bo tròn hình vuông
+                          backgroundColor: "#FFAA00", // Màu nền của hình vuông
+                          transform: "translateX(-50%) rotate(45deg)", // Xoay hình vuông 45 độ
+                          zIndex: 2, // Đặt hình vuông phía sau avatar
+                        },
+                        "&::before": {
+                          content: '"1"', // Nội dung hiển thị số 1
+                          position: "absolute",
+                          bottom: "-5px", // Đặt số 1 vào cùng vị trí với hình vuông
+                          left: "50%", // Căn giữa số 1
+                          transform: "translateX(-50%)", // Đảm bảo số 1 không bị xoay
+                          zIndex: 3, // Đặt số 1 lên trên hình vuông
+                          display: "flex", // Sử dụng flex để căn giữa
+                          justifyContent: "center", // Căn giữa theo chiều ngang
+                          alignItems: "center", // Căn giữa theo chiều dọc
+                          fontSize: "10px", // Kích thước chữ
+                          color: "white", // Màu chữ
+                          fontWeight: "bold", // Đậm chữ
+                        },
+                      }}
+                    >
+                      <Avatar
+                        src={employees[0]?.avatar}
+                        sx={{
+                          position: "absolute",
+                          width: "70px",
+                          height: "70px",
+                        }}
+                      ></Avatar>
+                    </Box>
+
+                    <Image
+                      src="/images/leader-board.svg"
+                      alt="Leader Board"
+                      width={30}
+                      height={60}
+                      style={{
+                        position: "absolute",
+                        top: "-175px",
+                        left: "calc(50% - 30px)",
+                        transform: "translateX(-50%) rotate(324deg)",
+                        zIndex: 1,
+                      }}
+                    />
+
+                    <Typography
+                      sx={{
+                        position: "absolute",
+                        right: "50%",
+                        transform: "translateX(50%)",
+                        fontSize: "15px",
+                        fontWeight: "bold",
+                        color: "white",
+                        top: "-70px",
+                      }}
+                    >
+                      {employees[0]?.name}
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        position: "absolute",
+                        right: "50%",
+                        fontSize: "16px",
+                        color: "white",
+                        borderRadius: "8px",
+                        padding: "4px 7px",
+                        whiteSpace: "nowrap",
+                        backgroundColor: "#9087E5",
+                        fontWeight: "bold",
+                        transform: "translateX(50%)",
+                        top: "-40px",
+                      }}
+                    >
+                      {employees[0]?.count + " " + t("COMMON.POST.COUNT_POSTS")}
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      backgroundImage: "url(/images/rank-3.svg)", // Gradient nền mượt mà
+                      width: "calc(100%/ 3)",
+                      mt: "10px",
+                      height: "100%",
+                      backgroundSize: "contain",
+                      backgroundPosition: "center top",
+                      backgroundRepeat: "no-repeat",
+                      position: "relative",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: "60px",
+                        height: "60px",
+                        position: "absolute",
+                        borderRadius: "50%",
+                        right: "50%",
+                        transform: "translateX(50%)",
+                        top: "-145px",
+                        border: "2px solid red",
+                        zIndex: 1,
+                        overflow: "visible", // Cho phép phần tử con thoát ra ngoài
+                        // Thêm ::after để tạo hình vuông
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          bottom: "-8px", // Đặt hình vuông vào cuối avatar
+                          left: "50%", // Căn giữa hình vuông
+                          width: "17px", // Kích thước hình vuông
+                          height: "17px",
+                          borderRadius: "4px", // Bo tròn hình vuông
+                          backgroundColor: "red", // Màu nền của hình vuông
+                          transform: "translateX(-50%) rotate(45deg)", // Xoay hình vuông 45 độ
+                          zIndex: 2, // Đặt hình vuông phía sau avatar
+                        },
+                        "&::before": {
+                          content: '"3"', // Nội dung hiển thị số 1
+                          position: "absolute",
+                          bottom: "-5px", // Đặt số 1 vào cùng vị trí với hình vuông
+                          left: "50%", // Căn giữa số 1
+                          transform: "translateX(-50%)", // Đảm bảo số 1 không bị xoay
+                          zIndex: 3, // Đặt số 1 lên trên hình vuông
+                          display: "flex", // Sử dụng flex để căn giữa
+                          justifyContent: "center", // Căn giữa theo chiều ngang
+                          alignItems: "center", // Căn giữa theo chiều dọc
+                          fontSize: "10px", // Kích thước chữ
+                          color: "white", // Màu chữ
+                          fontWeight: "bold", // Đậm chữ
+                        },
+                      }}
+                    >
+                      <Avatar
+                        src={employees[2]?.avatar}
+                        sx={{
+                          position: "absolute",
+                          width: "60px",
+                          height: "60px",
+                        }}
+                      ></Avatar>
+                    </Box>
+
+                    <Typography
+                      sx={{
+                        position: "absolute",
+                        right: "30%",
+                        transform: "translateX(20%)",
+                        fontSize: "15px",
+                        color: "white",
+                        zIndex: 2,
+                        fontWeight: "bold",
+                        top: "-70px",
+                      }}
+                    >
+                      {employees[2]?.name}
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        position: "absolute",
+                        right: "50%",
+                        fontSize: "16px",
+                        color: "white",
+                        borderRadius: "8px",
+                        padding: "4px 7px",
+                        whiteSpace: "nowrap",
+                        backgroundColor: "#9087E5",
+                        fontWeight: "bold",
+                        transform: "translateX(50%)",
+                        top: "-40px",
+                      }}
+                    >
+                      {employees[2]?.count + " " + t("COMMON.POST.COUNT_POSTS")}
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
-
-              {/* Name */}
-              <Typography variant="body2" color="white" sx={{ maxWidth: 80, textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {employee.name.split(' ').pop().slice(0, 10)}
-              </Typography>
-
-              {/* Podium block */}
-              <Box sx={{
-                height: height,
-                width: 64,
-                bgcolor: 'white',
-                borderTopLeftRadius: 8,
-                borderTopRightRadius: 8,
-                mt: 1.5,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'start',
-                pt: 1.2,
-              }}>
-                <Typography variant="h5" color="primary" fontWeight="bold">
-                  {position}
-                </Typography>
+              <Box
+                sx={{
+                  position: "absolute", // Bắt buộc để z-index hoạt động
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "left",
+                  bottom: "-200px",
+                  width: "calc(100% - 20px)",
+                  left: "50%",
+                  padding: "45px 0px 2px 0px",
+                  transform: "translateX(-50%)",
+                  backgroundImage: "url(/images/userRank.svg)",
+                  backgroundSize: "cover",
+                  fontSize: "20px",
+                  height: "290px",
+                  // overflow: "hidden",
+                  borderRadius: "0 0 12px 12px",
+                  zIndex: 3,
+                }}
+              >
+                <Box
+                  sx={{
+                    maxHeight: 300,
+                    overflow: "auto",
+                    scrollbarGutter: "stable",
+                    padding: "0 1px 7px 7px",
+                    "&::-webkit-scrollbar": {
+                      width: "7px",
+                      height: "7px",
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                      backgroundColor: "#cecece",
+                      borderRadius: "10px",
+                    },
+                    pr: 1,
+                  }}
+                >
+                  {topFive.map((user, index) => (
+                    <Box
+                      key={index}
+                      sx={{
+                        "&:hover": {
+                          backgroundColor: "var(--hover-color)",
+                          cursor: "pointer",
+                        },
+                        borderRadius: "10px",
+                        padding: "5px 6px",
+                        display: "flex",
+                        justifyContent: "left",
+                        alignItems: "center",
+                      }}
+                    >
+                      {index === 0 ? (
+                        <Image
+                          src="/images/cup.svg"
+                          alt="Cup"
+                          width={20}
+                          height={20}
+                          style={{ marginRight: '15px' }}
+                        />
+                      ) : (
+                        <Box
+                          sx={{
+                            color: "white",
+                            fontSize: "13px",
+                            borderRadius: "50%",
+                            border:
+                              index === 0
+                                ? "1px solid #FFAA00"
+                                : index === 1
+                                  ? "1px solid #00D95F"
+                                  : index === 2
+                                    ? "1px solid red"
+                                    : "1px solid rgb(59, 59, 59)",
+                            width: "20px",
+                            height: "20px",
+                            display: "flex",
+                            backgroundColor:
+                              index === 0
+                                ? "#FFAA00"
+                                : index === 1
+                                  ? "#00D95F"
+                                  : index === 2
+                                    ? "red"
+                                    : "rgb(59, 59, 59)",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginRight: "15px",
+                          }}
+                        >
+                          {index + 1}
+                        </Box>
+                      )}
+                      <Box>
+                        <Avatar
+                          sx={{
+                            mr: "12px",
+                            width: "45px",
+                            height: "45px",
+                          }}
+                          src={
+                            user.avatar ||
+                            "https://localhost:44381/avatars/aa1678f0-75b0-48d2-ae98-50871178e9bd.jfif"
+                          }
+                        />
+                      </Box>
+                      <Box>
+                        <Typography
+                          sx={{
+                            color: "#0C092A",
+                            fontWeight: "bold",
+                            fontSize: "16px",
+                          }}
+                        >
+                          {user.name}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: "#858494",
+                            fontSize: "14px",
+                          }}
+                        >
+                          {user.id}
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          fontSize: "16px",
+                          color: "white",
+                          marginLeft: "auto",
+                          borderRadius: "8px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: "4px 7px",
+                          whiteSpace: "nowrap",
+                          backgroundColor: "#37cf79e6",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        <Star
+                          size={16}
+                          style={{
+                            color: "#FFAA00",
+                            fill: "#FFAA00",
+                            verticalAlign: "middle",
+                            marginRight: "6px",
+                          }}
+                        />
+                        {user.count}
+                      </Box>
+                    </Box>
+                  ))}
+                </Box>
               </Box>
             </Box>
-          );
-        })}
-      </Box>
-
-      {/* List */}
-      <Box sx={{ bgcolor: 'white', p: '2px 2px 0', borderTop: '1px solid #eee', borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
-        <List disablePadding>
-          {topFive.map((employee, index) => (
-            <ListItem key={employee.id} sx={{ py: 1.5, borderBottom: index !== employees.length - 1 ? '1px solid #eee' : 'none', display: 'flex', alignItems: 'center' }}>
-              {/* Rank circle */}
-              <Box sx={{
-                width: 24,
-                height: 24,
-                borderRadius: '50%',
-                bgcolor:
-                  index === 0 ? 'warning.main' :
-                    index === 1 ? 'grey.400' :
-                      index === 2 ? 'orange' :
-                        'grey.200',
-                color: 'white',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                mr: 2,
-                fontSize: 12,
-                fontWeight: 'bold'
-              }}>
-                {index + 1}
-              </Box>
-
-              {/* Avatar */}
-              <Avatar src={employee.avatar || undefined} sx={{ width: 32, height: 32, mr: 2 }}>
-                {!employee.avatar && '👤'}
-              </Avatar>
-
-              {/* Info */}
-              <Box sx={{ flexGrow: 1 }}>
-                <Typography fontSize={14} fontWeight={500}>{employee.name}</Typography>
-                <Typography fontSize={12} color="text.secondary">{employee.id}</Typography>
-              </Box>
-
-              {/* Count badge */}
-              <Box sx={{
-                bgcolor: index < 3 ? 'green.500' : 'green.400',
-                px: 1.5,
-                py: 0.5,
-                borderRadius: 1,
-                fontSize: 12,
-                fontWeight: 500
-              }}>
-                {employee.count}
-              </Box>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-    </Paper>
+          </Box>
+        </Box>
+      </Paper>
+    </Box>
   );
-};
+}
 
 export default RankLike;
