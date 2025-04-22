@@ -438,7 +438,8 @@
       "COUNT_POST": "Số lượng bài đăng",
       "COUNT_LIKE": "Số lượng thích",
       "COUNT_SHARE": "Số lượng chia sẻ",
-      "TITLE_TOP_RANKING": "Top bài đăng"
+      "TITLE_TOP_RANKING": "Bảng xếp hạng",
+      "COUNT_POSTS": "bài đăng"
     },
     "EMPLOYEE": {
       "FULLNAME": "Họ và tên",

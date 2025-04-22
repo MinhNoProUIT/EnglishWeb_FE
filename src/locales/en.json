@@ -531,7 +531,8 @@
             "COUNT_POST": "Count Post",
             "COUNT_LIKE": "Count Like",
             "COUNT_SHARE": "Count Share",
-            "TITLE_TOP_RANKING": "Top ranking"
+            "TITLE_TOP_RANKING": "Ranking",
+            "COUNT_POSTS": "posts"
         },
         "EMPLOYEE": {
             "FULLNAME": "Full Name",
