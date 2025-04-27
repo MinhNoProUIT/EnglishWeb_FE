@@ -29,6 +29,7 @@ import { useTranslation } from "react-i18next";
 import { authSelector } from "@/redux/slices/authSlice";
 import { useSelector } from "react-redux";
 import Loading from "./Loading";
+import { MenuBookOutlined } from "@mui/icons-material";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
@@ -38,15 +39,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const menuLeft = useSelector(authSelector);
 
   console.log(Object.keys(menuLeft));
-console.log(menuLeft["/statistics/post"]);
+  console.log(menuLeft["/statistics/post"]);
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <Sidebar>
         {(menuLeft["Home"].IsAllowView ||
           menuLeft["Statistics"].IsAllowView) && (
-          <TypographyItem text={t("COMMON.SIDEBAR.DASHBOARD")} />
-        )}
+            <TypographyItem text={t("COMMON.SIDEBAR.DASHBOARD")} />
+          )}
         {menuLeft["Home"].IsAllowView && (
           <SidebarItem
             icon={<Home />}
@@ -59,8 +60,8 @@ console.log(menuLeft["/statistics/post"]);
           <SidebarItem
             icon={<ChartNoAxesCombined />}
             text={t("COMMON.SIDEBAR.STATISTICS")}
-            // route='/statistics'
-            // active={pathname === '/statistics'}
+          // route='/statistics'
+          // active={pathname === '/statistics'}
           >
             {menuLeft["/statistics/post"]?.IsAllowView && (
               <SidebarItem
@@ -70,15 +71,15 @@ console.log(menuLeft["/statistics/post"]);
                 active={pathname === "/statistics/post"}
               />
             )}
-            {/* {menuLeft["/admin/statistics/benefits"].IsAllowView && (
+            {menuLeft["/statistics/course"]?.IsAllowView && (
               <SidebarItem
-                icon={<ChartNoAxesCombined />}
-                text={t("COMMON.SIDEBAR.BENEFITS")}
-                route="/admin/statistics/benefits"
-                active={pathname === "/admin/statistics/benefits"}
+                icon={<MenuBookOutlined />}
+                text={t("COMMON.SIDEBAR.COURSE")}
+                route="/statistics/course"
+                active={pathname === "/statistics/course"}
               />
             )}
-            {menuLeft["/admin/statistics/salary"].IsAllowView && (
+            {/* {menuLeft["/admin/statistics/salary"].IsAllowView && (
               <SidebarItem
                 icon={<ChartNoAxesCombined />}
                 text={t("COMMON.SIDEBAR.SALARY")}
