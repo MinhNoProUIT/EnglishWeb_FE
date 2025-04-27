@@ -30,13 +30,13 @@ const initialState: MenuLeftState = {
   "Work regulations": { IsAllowView: true },
   Insurance: { IsAllowView: true },
   Reward: { IsAllowView: true },
-  Benefit: { IsAllowView: true },
+  Course: { IsAllowView: true },
   Discipline: { IsAllowView: true },
   Configuration: { IsAllowView: true },
 
   // Thêm mock cho submenu nếu cần
   "/statistics/post": { IsAllowView: true },
-  "/admin/statistics/benefits": { IsAllowView: true },
+  "/statistics/course": { IsAllowView: true },
   "/admin/statistics/salary": { IsAllowView: true },
   "/admin/statistics/employee-contract": { IsAllowView: true },
   "/admin/statistics/timeoff-errorreport": { IsAllowView: true },

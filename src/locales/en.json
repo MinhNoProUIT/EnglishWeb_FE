@@ -165,7 +165,8 @@
             "POST": "Post",
             "WORKHISTORY": "Work History",
             "CREATETASKS": "Create tasks",
-            "TOTAL_POST": "Total posts"
+            "TOTAL_POST": "Total posts",
+            "COURSE": "Course"
         },
         "MODE": {
             "LIGHT": "Light",
@@ -532,7 +533,31 @@
             "COUNT_LIKE": "Count Like",
             "COUNT_SHARE": "Count Share",
             "TITLE_TOP_RANKING": "Ranking",
-            "COUNT_POSTS": "posts"
+            "COUNT_POSTS": "posts",
+            "CHOOSE_TIME": "Choose time period",
+            "7_DAYS": "7 days",
+            "30_DAYS": "30 days",
+            "90_DAYS": "3 months",
+            "ALL": "All",
+            "LESS_THAN": "Less than 10",
+            "BETWEEN": "From 10 to 30",
+            "MORE_THAN": "More than 30"
+        },
+        "COURSE": {
+            "TOTAL_COURSE": "Total Courses",
+            "PAID_COURSE": "Paid Courses",
+            "CONVERSION_RATE": "Conversion Rate",
+            "TITLE_CHART": "Monthly revenue",
+            "MONEY": "Money",
+            "CONTENT": "Content transaction",
+            "DATE_TRANSACTION": "Date transaction",
+            "TITLE_TABLE": "List of transactions",
+            "FROM": "From",
+            "TO": "To",
+            "TITLE_REPORT": "Report a violation",
+            "TOTAL_REPORT": "report",
+            "POST_ID": "Post ID",
+            "USER_ID": "User ID"
         },
         "EMPLOYEE": {
             "FULLNAME": "Full Name",

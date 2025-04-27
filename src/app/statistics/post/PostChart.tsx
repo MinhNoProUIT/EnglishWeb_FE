@@ -61,37 +61,46 @@ const PostChart = () => {
 
         const chartInstance = echarts.init(chartRef.current);
 
+        const computedColor = getComputedStyle(document.documentElement)
+            .getPropertyValue('--text-color')
+            .trim();
+
         const option: echarts.EChartsCoreOption = {
+            textStyle: {
+                color: computedColor,
+            },
             tooltip: {
                 trigger: 'axis',
+                textStyle: {
+                    color: computedColor,
+                },
             },
             legend: {
                 top: 40,
-            },
-            toolbox: {
-                feature: {
-                    saveAsImage: {},
+                textStyle: {
+                    color: computedColor,
                 },
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true,
             },
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
                 data: data.map((item) => item.date),
+                axisLabel: {
+                    color: computedColor,
+                },
             },
             yAxis: {
                 type: 'value',
+                axisLabel: {
+                    color: computedColor,
+                },
             },
             series: [
                 {
-                    name: 'Bài đăng',
+                    name: t("COMMON.POST.COUNT_POST"),
                     type: 'line',
                     smooth: true,
+                    color: "#FFD700",
                     data: data.map((item) => item.value),
                 },
             ],
@@ -102,7 +111,7 @@ const PostChart = () => {
         return () => {
             chartInstance.dispose();
         };
-    }, [data]);
+    }, [data, t]);
 
     const handleChange = (event: SelectChangeEvent) => {
         const value = event.target.value;
@@ -115,7 +124,7 @@ const PostChart = () => {
             sx={{
                 p: 2,
                 borderRadius: 4,
-                backgroundColor: 'var(--background-color)',
+                backgroundColor: 'var(--background-item)',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)'
             }}
         >
@@ -128,22 +137,45 @@ const PostChart = () => {
                 </Typography>
             </Box>
             <FormControl sx={{ mb: 2, minWidth: 200 }} size="small">
-                <InputLabel id="time-range-select-label">Chọn khoảng thời gian</InputLabel>
+                <InputLabel
+                    id="time-range-select-label"
+                    sx={{ color: 'var(--text-color)' }}
+                >
+                    {t("COMMON.POST.CHOOSE_TIME")}
+                </InputLabel>
                 <Select
                     labelId="time-range-select-label"
                     value={range}
-                    label="Chọn khoảng thời gian"
+                    label={t("COMMON.POST.CHOOSE_TIME")}
+                    sx={{
+                        color: 'var(--text-color)',
+                        '.MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'var(--text-color)',
+                        },
+                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'var(--text-color)',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'var(--text-color)',
+                        },
+                    }}
                     onChange={handleChange}
                 >
-                    <MenuItem value="7">7 ngày</MenuItem>
-                    <MenuItem value="30">30 ngày</MenuItem>
-                    <MenuItem value="90">3 tháng</MenuItem>
+                    <MenuItem value="7">
+                        {t("COMMON.POST.7_DAYS")}
+                    </MenuItem>
+                    <MenuItem value="30">
+                        {t("COMMON.POST.30_DAYS")}
+                    </MenuItem>
+                    <MenuItem value="90">
+                        {t("COMMON.POST.90_DAYS")}
+                    </MenuItem>
                 </Select>
             </FormControl>
 
             <Box
                 ref={chartRef}
-                sx={{ height: 400, bgcolor: 'white', borderRadius: 2 }}
+                sx={{ height: 400, backgroundColor: 'var(--background-item)', }}
             />
         </Box>
     );

@@ -11,47 +11,56 @@ import {
     TableContainer,
     TableSortLabel,
     Avatar,
-    IconButton
 } from '@mui/material'
 import { ClipboardCheck } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useRouter } from 'next/navigation'
-import { IPostListItem } from '@/interfaces/post.interface'
+import { ITransactionListItem } from '@/interfaces/transaction.interface'
+import { formatNumberToMoney } from '@/utils/formatNumberWithUnit'
+import DetailTransaction from './DetailTransaction'
 
 interface IProps {
-    postsData: IPostListItem[]
+    transactionData: ITransactionListItem[]
     totalRecords: number
     onSort: (property: string) => void
 }
 
-function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
+function TableDataTransaction({ transactionData, totalRecords, onSort }: IProps) {
     const { t } = useTranslation('common')
-    const router = useRouter()
-    const [selected, setSelected] = useState<number[]>([])
-    const [openDialog, setOpenDialog] = useState(false)
-    const [selectedRow, setSelectedRow] = useState<number | null>(null)
     const [order, setOrder] = useState<'asc' | 'desc'>('asc')
     const [orderBy, setOrderBy] = useState<string>('')
-    const [openModal, setOpenModal] = useState(false)
 
-    useEffect(() => { }, [
-        totalRecords,
-        selected,
-        openDialog,
-        selectedRow,
-        order,
-        orderBy,
-        openModal,
-        router,
-        t,
-        setSelected,
-        setOpenDialog,
-        setSelectedRow,
-        setOrder,
-        setOrderBy,
-        setOpenModal
-    ])
+    const [openDetailModal, setOpenDetailModal] = useState(false);
+    const [selectedTransaction, setSelectedTransaction] = useState<ITransactionListItem | null>(null);
+
+    const handleOpenDetailModal = (transaction: ITransactionListItem) => {
+        setSelectedTransaction(transaction);
+        setOpenDetailModal(true);
+    };
+
+    const handleCloseDetailModal = () => {
+        setSelectedTransaction(null);
+        setOpenDetailModal(false);
+    };
+
+
+    // useEffect(() => { }, [
+    //     totalRecords,
+    //     selected,
+    //     openDialog,
+    //     selectedRow,
+    //     order,
+    //     orderBy,
+    //     openModal,
+    //     router,
+    //     t,
+    //     setSelected,
+    //     setOpenDialog,
+    //     setSelectedRow,
+    //     setOrder,
+    //     setOrderBy,
+    //     setOpenModal
+    // ])
 
     const handleSort = (property: string) => {
         onSort(property)
@@ -79,13 +88,17 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                 <TableHead>
                     <TableRow
                         sx={{
-                            backgroundColor: 'var(--header-table-dashboard) !important', // Đặt !important để ưu tiên
+                            backgroundColor: '#f5f5f5', // nền nhạt dễ nhìn
                             '& th': {
-                                backgroundColor: 'var(--header-table-dashboard) !important' // Áp dụng cho các ô
+                                backgroundColor: '#f5f5f5',
+                                fontWeight: 'bold',
+                                color: '#333', // chữ đậm
+                                fontSize: '16px',
+                                borderBottom: '2px solid #e0e0e0', // viền mờ nhẹ
                             },
                             '&:last-child td, &:last-child th': {
-                                border: 'none'
-                            }
+                                borderBottom: 'none',
+                            },
                         }}
                     >
                         {/* full name */}
@@ -142,7 +155,7 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                                         whiteSpace: 'nowrap'
                                     }}
                                 >
-                                    {t('COMMON.POST.COUNT_POST')}
+                                    {t('COMMON.COURSE.MONEY')}
                                 </Typography>
                             </TableSortLabel>
                         </TableCell>
@@ -169,7 +182,7 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                                         whiteSpace: 'nowrap'
                                     }}
                                 >
-                                    {t('COMMON.POST.COUNT_LIKE')}
+                                    {t('COMMON.COURSE.CONTENT')}
                                 </Typography>
                             </TableSortLabel>
                         </TableCell>
@@ -197,7 +210,7 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                                         whiteSpace: 'nowrap'
                                     }}
                                 >
-                                    {t('COMMON.POST.COUNT_SHARE')}
+                                    {t('COMMON.COURSE.DATE_TRANSACTION')}
                                 </Typography>
                             </TableSortLabel>
                         </TableCell>
@@ -221,20 +234,20 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {postsData?.map((row: IPostListItem, index: number) => (
+                    {transactionData?.map((row: ITransactionListItem, index: number) => (
                         <TableRow key={index} >
                             {/* Author Info */}
                             <TableCell padding="normal">
                                 <Box display="flex" alignItems="center" gap={2}>
                                     <Avatar
                                         src={
-                                            row.createdByAvatar ||
+                                            row.avatar ||
                                             'https://localhost:44381/avatars/aa1678f0-75b0-48d2-ae98-50871178e9bd.jfif'
                                         }
                                     />
                                     <Box>
                                         <Typography variant="body1" sx={{ color: 'var(--text-color)' }} noWrap>
-                                            {row.createdBy}
+                                            {row.name}
                                         </Typography>
                                         <Typography variant="body2" sx={{ color: 'var(--text-gray-color)' }} noWrap>
                                             ID: {row.id}
@@ -244,45 +257,59 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                             </TableCell>
                             {/* Total Posts */}
                             <TableCell align="center" sx={{ paddingRight: 5, color: 'var(--text-color)' }}>
-                                <Typography variant="body1" noWrap>
-                                    {row.totalPosts}
+                                <Typography variant="body1" fontWeight={600} noWrap>
+                                    {formatNumberToMoney(row.amount)}
                                 </Typography>
                             </TableCell>
                             {/* Likes */}
                             <TableCell align="center" sx={{ paddingRight: 5, color: 'var(--text-color)' }}>
                                 <Typography variant="body1" noWrap>
-                                    {row.likesCount}
+                                    {row.content}
                                 </Typography>
                             </TableCell>
                             {/* Shares */}
                             <TableCell align="center" sx={{ paddingRight: 5, color: 'var(--text-color)' }}>
                                 <Typography variant="body1" noWrap>
-                                    {row.sharesCount}
+                                    {row.date.toDateString()}
                                 </Typography>
                             </TableCell>
 
                             {/* Action */}
-                            <TableCell align="center">
+                            <TableCell sx={{ paddingLeft: 20, color: 'var(--text-color)' }}>
                                 <Tooltip title={t('COMMON.ERROR_REPORT.CONSIDER')}>
-                                    <IconButton sx={{
-                                        color: '#00d100',
-                                        borderRadius: '50%',
-                                        width: '42px',
-                                        height: '42px',
-                                        '&:hover': {
-                                            backgroundColor: 'var(--hover-color)'
-                                        }
-                                    }}>
+                                    <Box
+                                        onClick={() => handleOpenDetailModal(row)}
+                                        display='flex'
+                                        alignItems='center'
+                                        justifyContent='center'
+                                        sx={{
+                                            color: '#00d100',
+                                            borderRadius: '50%',
+                                            width: '42px',
+                                            height: '42px',
+                                            '&:hover': {
+                                                backgroundColor: 'var(--hover-color)'
+                                            }
+                                        }}
+                                    >
                                         <ClipboardCheck />
-                                    </IconButton>
+                                    </Box>
                                 </Tooltip>
                             </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
+            {selectedTransaction && (
+                <DetailTransaction
+                    open={openDetailModal}
+                    onClose={handleCloseDetailModal}
+                    transaction={selectedTransaction}
+                />
+            )}
+
         </TableContainer>
     )
 }
 
-export default TableDataPost;
+export default TableDataTransaction;

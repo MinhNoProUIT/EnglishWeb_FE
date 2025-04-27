@@ -26,6 +26,7 @@ interface IFilter {
     isDescending?: boolean;
     keyword?: string;
     isType?: string;
+    minReports?: string;
 }
 
 const mockPosts: IPostListItem[] = [
@@ -139,6 +140,8 @@ function TablePost() {
     const [filter, setFilter] = useState<IFilter>({
         pageSize: 5,
         pageNumber: 1,
+        keyword: "",
+        minReports: ""
     });
     const [keyword, setKeyword] = useState("");
     const [openDialog, setOpenDialog] = useState(false);
@@ -146,10 +149,30 @@ function TablePost() {
     const [order, setOrder] = useState<"asc" | "desc">("asc");
     const [orderBy, setOrderBy] = useState<string>("");
     const [openModal, setOpenModal] = useState(false);
+    const [minReports, setMinReports] = useState<string | number>("");
 
-    const filteredData = mockPosts.filter((post) =>
-        post.createdBy.toLowerCase().includes(filter.keyword.toLowerCase())
-    );
+    const handleChangeMinReports = (event: SelectChangeEvent<string | number>) => {
+        setMinReports(event.target.value);
+        // Nếu muốn search ngay khi chọn filter thì gọi thêm handleSearchKeyword();
+    };
+
+    const removeVietnameseTones = (str: string) =>
+        str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    const filteredData = mockPosts.filter((post) => {
+        const matchesKeyword = removeVietnameseTones(post.createdBy || "").includes(removeVietnameseTones(filter.keyword || ""));
+
+        let matchesReports = true;
+        if (minReports === "lessThan10") {
+            matchesReports = (post.totalPosts || 0) < 10;
+        } else if (minReports === "between10And30") {
+            matchesReports = (post.totalPosts || 0) >= 10 && (post.totalPosts || 0) <= 30;
+        } else if (minReports === "greaterThan30") {
+            matchesReports = (post.totalPosts || 0) > 30;
+        }
+
+        return matchesKeyword && matchesReports;
+    });
 
     const paginatedData = filteredData.slice(
         (page - 1) * Number(rowsPerPage),
@@ -254,7 +277,7 @@ function TablePost() {
             </Typography>
 
             <Box display="flex" alignItems="center" gap="24px" margin="20px 4px">
-                <Box sx={{ position: "relative", width: "45%", height: "55px" }}>
+                <Box sx={{ display: "flex", flexDirection: "row", width: "45%", height: "55px", gap: "12px" }}>
                     <TextField
                         id="location-search"
                         type="search"
@@ -318,6 +341,49 @@ function TablePost() {
                             },
                         }}
                     />
+                    <FormControl
+                        sx={{
+                            width: "180px",
+                            height: "55px",
+                            "& fieldset": {
+                                borderRadius: "8px",
+                                borderColor: "var(--border-color)",
+                            },
+                            "& .MuiOutlinedInput-root:hover fieldset": {
+                                borderColor: "var(--hover-field-color)",
+                            },
+                            "& .MuiOutlinedInput-root.Mui-focused fieldset": {
+                                borderColor: "var(--selected-field-color)",
+                            },
+                        }}
+                    >
+                        <Select
+                            displayEmpty
+                            value={minReports}
+                            onChange={handleChangeMinReports}
+                            sx={{
+                                height: "55px",
+                                color: "var(--text-color)",
+                                fontSize: "16px",
+                                "& .MuiSelect-icon": {
+                                    color: "var(--text-color)",
+                                },
+                            }}
+                        >
+                            <MenuItem value="">
+                                {t("COMMON.POST.ALL")}
+                            </MenuItem>
+                            <MenuItem value="lessThan10">
+                                {t("COMMON.POST.LESS_THAN", { number: 10 })}
+                            </MenuItem>
+                            <MenuItem value="between10And30">
+                                {t("COMMON.POST.BETWEEN", { from: 10, to: 30 })}
+                            </MenuItem>
+                            <MenuItem value="greaterThan30">
+                                {t("COMMON.POST.MORE_THAN", { number: 30 })}
+                            </MenuItem>
+                        </Select>
+                    </FormControl>
                 </Box>
 
                 <Box>
