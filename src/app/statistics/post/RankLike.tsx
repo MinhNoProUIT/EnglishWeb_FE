@@ -115,7 +115,7 @@ function RankLike() {
     }));
 
   return (
-    <Box width="30%">
+    <Box width="35%">
       <Paper
         sx={{
           width: "100%",
@@ -263,9 +263,9 @@ function RankLike() {
                     <Typography
                       sx={{
                         position: "absolute",
-                        right: "50%",
-                        transform: "translateX(50%)",
+                        transform: "translateX(30%)",
                         fontSize: "15px",
+                        alignItems: "center",
                         fontWeight: "bold",
                         color: "white",
                         top: "-70px",
@@ -374,7 +374,6 @@ function RankLike() {
                     <Typography
                       sx={{
                         position: "absolute",
-                        right: "50%",
                         transform: "translateX(50%)",
                         fontSize: "15px",
                         fontWeight: "bold",
@@ -470,8 +469,7 @@ function RankLike() {
                     <Typography
                       sx={{
                         position: "absolute",
-                        right: "30%",
-                        transform: "translateX(20%)",
+                        transform: "translateX(10%)",
                         fontSize: "15px",
                         color: "white",
                         zIndex: 2,
@@ -660,8 +658,8 @@ function RankLike() {
             </Box>
           </Box>
         </Box>
-      </Paper>
-    </Box>
+      </Paper >
+    </Box >
   );
 }
 

@@ -63,25 +63,42 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
         setOrderBy(property)
     }
 
+    const rowHeight = 60;
+
+    const calculateEmptyRows = () => {
+        if (postsData.length <= 5) {
+            return 5 - postsData.length;
+        } else if (postsData.length <= 10) {
+            return 10 - postsData.length;
+        }
+        return 0;
+    };
+
+    const emptyRows = calculateEmptyRows();
+
     return (
         <TableContainer
             sx={{
-                scrollbarGutter: 'stable',
-                paddingLeft: '7px',
+                height: postsData.length <= 5 ? `${8 * rowHeight + 64}px` : `${13 * rowHeight + 64}px`,
+                overflowX: 'hidden',
+                paddingLeft: '8px',
                 '&::-webkit-scrollbar-thumb': {
                     backgroundColor: 'var(--scrollbar-color)',
                     borderRadius: '10px'
-                }
+                },
             }}
         >
             {/* table */}
-            <Table stickyHeader>
+            <Table stickyHeader sx={{ tableLayout: 'auto' }}>
                 <TableHead>
                     <TableRow
                         sx={{
+                            height: 64,
                             backgroundColor: 'var(--header-table-dashboard) !important', // Đặt !important để ưu tiên
                             '& th': {
-                                backgroundColor: 'var(--header-table-dashboard) !important' // Áp dụng cho các ô
+                                backgroundColor: 'var(--header-table-dashboard) !important', // Áp dụng cho các ô
+                                padding: '16px 24px', // Apply consistent padding to all headers
+                                borderColor: 'var(--border-color)'
                             },
                             '&:last-child td, &:last-child th': {
                                 border: 'none'
@@ -107,7 +124,6 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                                         fontSize: '16px',
                                         overflow: 'hidden',
                                         textOverflow: 'ellipsis',
-                                        whiteSpace: 'nowrap'
                                     }}
                                 >
                                     {t('COMMON.POST.FULL_NAME')}
@@ -137,9 +153,7 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                                         fontSize: '16px',
                                         textAlign: 'center',
                                         overflow: 'hidden',
-                                        ml: '8px',
                                         textOverflow: 'ellipsis',
-                                        whiteSpace: 'nowrap'
                                     }}
                                 >
                                     {t('COMMON.POST.COUNT_POST')}
@@ -166,7 +180,6 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                                         fontSize: '16px',
                                         overflow: 'hidden',
                                         textOverflow: 'ellipsis',
-                                        whiteSpace: 'nowrap'
                                     }}
                                 >
                                     {t('COMMON.POST.COUNT_LIKE')}
@@ -194,7 +207,6 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                                         textAlign: 'center',
                                         overflow: 'hidden',
                                         textOverflow: 'ellipsis',
-                                        whiteSpace: 'nowrap'
                                     }}
                                 >
                                     {t('COMMON.POST.COUNT_SHARE')}
@@ -222,14 +234,13 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                 </TableHead>
                 <TableBody>
                     {postsData?.map((row: IPostListItem, index: number) => (
-                        <TableRow key={index} >
+                        <TableRow key={index} sx={{ height: `${rowHeight}px` }}>
                             {/* Author Info */}
                             <TableCell padding="normal">
                                 <Box display="flex" alignItems="center" gap={2}>
                                     <Avatar
                                         src={
-                                            row.createdByAvatar ||
-                                            'https://localhost:44381/avatars/aa1678f0-75b0-48d2-ae98-50871178e9bd.jfif'
+                                            row.createdByAvatar
                                         }
                                     />
                                     <Box>
@@ -244,19 +255,19 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                             </TableCell>
                             {/* Total Posts */}
                             <TableCell align="center" sx={{ paddingRight: 5, color: 'var(--text-color)' }}>
-                                <Typography variant="body1" noWrap>
+                                <Typography variant="body1">
                                     {row.totalPosts}
                                 </Typography>
                             </TableCell>
                             {/* Likes */}
                             <TableCell align="center" sx={{ paddingRight: 5, color: 'var(--text-color)' }}>
-                                <Typography variant="body1" noWrap>
+                                <Typography variant="body1" >
                                     {row.likesCount}
                                 </Typography>
                             </TableCell>
                             {/* Shares */}
                             <TableCell align="center" sx={{ paddingRight: 5, color: 'var(--text-color)' }}>
-                                <Typography variant="body1" noWrap>
+                                <Typography variant="body1">
                                     {row.sharesCount}
                                 </Typography>
                             </TableCell>
@@ -279,6 +290,13 @@ function TableDataPost({ postsData, totalRecords, onSort }: IProps) {
                             </TableCell>
                         </TableRow>
                     ))}
+                    {emptyRows > 0 && (
+                        Array.from({ length: emptyRows }).map((_, index) => (
+                            <TableRow key={`empty-${index}`} sx={{ height: `${rowHeight}px` }}>
+                                <TableCell colSpan={5} sx={{ borderBottom: 'none' }} />
+                            </TableRow>
+                        ))
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>

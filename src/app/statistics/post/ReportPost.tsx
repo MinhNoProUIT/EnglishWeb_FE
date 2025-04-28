@@ -86,11 +86,11 @@ export default function ReportPost() {
         <Paper
             elevation={0}
             sx={{
-                width: '100%',
+                width: '35%',
                 padding: '24px 0',
                 backgroundColor: 'var(--background-item)',
                 borderRadius: '15px',
-                height: '700px',
+                height: '714px',
                 display: 'flex',
                 boxShadow: 4,
                 flexDirection: 'column'

@@ -465,7 +465,8 @@
       "TITLE_REPORT": "Báo cáo vi phạm",
       "TOTAL_REPORT": "báo cáo",
       "POST_ID": "Mã bài viết",
-      "USER_ID": "Mã người dùng"
+      "USER_ID": "Mã người dùng",
+      "TITLE_PAGE": "Quản lý khóa học"
     },
     "EMPLOYEE": {
       "FULLNAME": "Họ và tên",

@@ -7,13 +7,6 @@ import TablePost from './TablePost';
 import RankLike from './RankLike';
 import ReportPost from './ReportPost';
 
-const commonBoxStyle = {
-    borderRadius: 4,
-    boxShadow: 'var(--box-shadow-paper)',
-    p: 2,
-    backgroundColor: "var(--background-item)"
-};
-
 export default function PostManagementPage() {
     return (
         <Box
@@ -22,7 +15,9 @@ export default function PostManagementPage() {
                 flexDirection: 'column',
                 gap: 4,
                 backgroundColor: 'var(--background-color)',
-                p: 2
+                p: 2,
+                maxWidth: '100vw', // Giới hạn chiều rộng màn hình
+                overflowX: 'auto', // Nếu có nội dung quá rộng, nó sẽ có thanh cuộn ngang
             }}
         >
             <Box
@@ -58,25 +53,9 @@ export default function PostManagementPage() {
                     minWidth: 0,
                 }}
             >
-                <Box
-                    sx={{
-                        ...commonBoxStyle,
-                        flex: '7 1 0%',
-                    }}
-                >
-                    <TablePost />
-                </Box>
-
-                <Box
-                    sx={{
-                        flex: '3 1 0%', // ⬅️ ReportPost chiếm 30%
-                        minWidth: 0,
-                    }}
-                >
-                    <ReportPost />
-                </Box>
+                <TablePost />
+                <ReportPost />
             </Box>
-
         </Box>
     );
 }
