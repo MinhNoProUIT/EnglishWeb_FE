@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import {
   ChartNoAxesCombined,
+  NotepadText,
   Users,
   FileSignature,
   Stethoscope,
@@ -28,6 +29,7 @@ import { useTranslation } from "react-i18next";
 import { authSelector } from "@/redux/slices/authSlice";
 import { useSelector } from "react-redux";
 import Loading from "./Loading";
+import { MenuBookOutlined } from "@mui/icons-material";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
@@ -36,13 +38,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const menuLeft = useSelector(authSelector);
 
+  console.log(Object.keys(menuLeft));
+  console.log(menuLeft["/statistics/post"]);
+
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <Sidebar>
         {(menuLeft["Home"].IsAllowView ||
           menuLeft["Statistics"].IsAllowView) && (
-          <TypographyItem text={t("COMMON.SIDEBAR.DASHBOARD")} />
-        )}
+            <TypographyItem text={t("COMMON.SIDEBAR.DASHBOARD")} />
+          )}
         {menuLeft["Home"].IsAllowView && (
           <SidebarItem
             icon={<Home />}
@@ -55,26 +60,26 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <SidebarItem
             icon={<ChartNoAxesCombined />}
             text={t("COMMON.SIDEBAR.STATISTICS")}
-            // route='/statistics'
-            // active={pathname === '/statistics'}
+          // route='/statistics'
+          // active={pathname === '/statistics'}
           >
-            {menuLeft["/admin/statistics/attendance"].IsAllowView && (
+            {menuLeft["/statistics/post"]?.IsAllowView && (
               <SidebarItem
-                icon={<ChartNoAxesCombined />}
-                text={t("COMMON.SIDEBAR.ATTENDANCE")}
-                route="/admin/statistics/attendance"
-                active={pathname === "/admin/statistics/attendance"}
+                icon={<NotepadText />}
+                text={t("COMMON.SIDEBAR.POST")}
+                route="/statistics/post"
+                active={pathname === "/statistics/post"}
               />
             )}
-            {menuLeft["/admin/statistics/benefits"].IsAllowView && (
+            {menuLeft["/statistics/course"]?.IsAllowView && (
               <SidebarItem
-                icon={<ChartNoAxesCombined />}
-                text={t("COMMON.SIDEBAR.BENEFITS")}
-                route="/admin/statistics/benefits"
-                active={pathname === "/admin/statistics/benefits"}
+                icon={<MenuBookOutlined />}
+                text={t("COMMON.SIDEBAR.COURSE")}
+                route="/statistics/course"
+                active={pathname === "/statistics/course"}
               />
             )}
-            {menuLeft["/admin/statistics/salary"].IsAllowView && (
+            {/* {menuLeft["/admin/statistics/salary"].IsAllowView && (
               <SidebarItem
                 icon={<ChartNoAxesCombined />}
                 text={t("COMMON.SIDEBAR.SALARY")}
@@ -105,7 +110,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 route="/admin/statistics/rewards-disciplines"
                 active={pathname === "/admin/statistics/rewards-disciplines"}
               />
-            )}
+            )} */}
             {menuLeft["/admin/statistics/notifications-events"].IsAllowView && (
               <SidebarItem
                 icon={<ChartNoAxesCombined />}

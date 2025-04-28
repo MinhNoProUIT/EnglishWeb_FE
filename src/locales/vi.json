@@ -162,9 +162,11 @@
       "REWARDS_DISCIPLINE": "Test",
       "NOTIFICATIONS_EVENTS": "Test",
       "REPORTS_SYSTEM": "Báo cáo - Hệ thống",
-      "ATTENDANCE": "Test",
+      "POST": "Bài đăng",
       "WORKHISTORY": "Lịch sử công tác",
-      "CREATETASKS": "Tạo công tác"
+      "CREATETASKS": "Tạo công tác",
+      "TOTAL_POST": "Tổng bài đăng",
+      "COURSE": "Khóa học"
     },
     "MODE": {
       "LIGHT": "Sáng",
@@ -429,7 +431,42 @@
       "TYPE": "Loại",
       "STATUS": "Trạng thái"
     },
-
+    "POST": {
+      "TOTAL_POST": "Tổng số lượng bài đăng",
+      "TITLE_CHART": " Thống kê số lượng bài đăng",
+      "TOTAL_USER_POST": "Tổng số người dùng đăng bài",
+      "TITLE_TABLE": "Danh sách bài đăng",
+      "FULL_NAME": "Họ và tên",
+      "COUNT_POST": "Số lượng bài đăng",
+      "COUNT_LIKE": "Số lượng thích",
+      "COUNT_SHARE": "Số lượng chia sẻ",
+      "TITLE_TOP_RANKING": "Bảng xếp hạng",
+      "COUNT_POSTS": "bài đăng",
+      "CHOOSE_TIME": "Chọn khoản thời gian",
+      "7_DAYS": "7 ngày",
+      "30_DAYS": "30 ngày",
+      "90_DAYS": "3 tháng",
+      "ALL": "Tất cả",
+      "LESS_THAN": "Nhỏ hơn 10",
+      "BETWEEN": "Từ 10 đến 30",
+      "MORE_THAN": "Lớn hơn 30"
+    },
+    "COURSE": {
+      "TOTAL_COURSE": "Tổng số gói học",
+      "PAID_COURSE": "Gói học trả phí",
+      "CONVERSION_RATE": "Tỉ lệ chuyển đổi",
+      "TITLE_CHART": "Doanh thu theo tháng",
+      "MONEY": "Số tiền",
+      "CONTENT": "Nội dung giao dịch",
+      "DATE_TRANSACTION": "Ngày giao dịch",
+      "TITLE_TABLE": "Danh sách giao dịch",
+      "FROM": "Từ ngày",
+      "TO": "Đến ngày",
+      "TITLE_REPORT": "Báo cáo vi phạm",
+      "TOTAL_REPORT": "báo cáo",
+      "POST_ID": "Mã bài viết",
+      "USER_ID": "Mã người dùng"
+    },
     "EMPLOYEE": {
       "FULLNAME": "Họ và tên",
       "EMAIL": "Email",
@@ -467,7 +504,6 @@
         }
       }
     },
-
     "JOBHISTORY": {
       "STARTDATE": "Ngày bắt đầu",
       "ENDDATE": "Ngày kết thúc",
@@ -478,7 +514,6 @@
       "CREATE_NEW_JOB": "Tạo công tác mới",
       "ASSIGNEE": "Người nhận công tác"
     },
-
     "TIMEOFF": {
       "TIMEOFF": "Danh sách nghỉ phép",
       "INFORMATION": "Thông tin nhân viên",
@@ -513,7 +548,6 @@
       "ACCEPT": "Đồng ý",
       "REPORT_ERROR": "Báo cáo sai sót"
     },
-
     "CONTRACT": {
       "INFORMATION": "Thông tin nhân viên",
       "INFORMATIONMANAGER": "Thông tin quản lí",
@@ -552,7 +586,6 @@
       "ACCEPT": "Đồng ý",
       "REPORT_ERROR": "Báo cáo sai sót"
     },
-
     "ERROR_REPORT": {
       "ERROR_REPORT": "Điền thông tin báo lỗi",
       "TITLE": "Danh sách báo cáo lỗi",
@@ -740,7 +773,6 @@
       "RETURN_LOGIN": "Quay lại đăng nhập",
       "NOT_FOUND": "Không tìm thấy email",
       "SEND_SUCCESS": "Gửi yêu cầu thành công",
-
       "WAIT_BEFORE_RETRY": "Vui lòng chờ {{countdown}} giây trước khi thử lại!"
     },
     "VERIFY": {
