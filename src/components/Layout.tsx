@@ -121,6 +121,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             )}
           </SidebarItem>
         )}
+
+        <SidebarItem
+          icon={<Home />}
+          text={t("COMMON.SIDEBAR.ACCOUNT")}
+          route="/account"
+          active={pathname === "/account"}
+        />
+
         {/* {(menuLeft["Home"].IsAllowView ||
           menuLeft["Statistics"].IsAllowView) && (
           <Divider
