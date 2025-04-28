@@ -24,6 +24,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from 'dayjs';
 import { convertToVietnamTime } from "@/utils/convertToVietnamTime";
 import { renderTimeViewClock } from "@mui/x-date-pickers/timeViewRenderers";
+import { useTheme } from "next-themes";
 
 
 interface IFilter {
@@ -102,22 +103,6 @@ const mockTransactions: ITransactionListItem[] = [
         date: new Date('2025-04-08'),
         content: 'Đi ăn nhà hàng',
     },
-    {
-        id: '#009',
-        name: 'Phan Văn I',
-        avatar: null,
-        amount: 650000,
-        date: new Date('2025-04-09'),
-        content: 'Đặt khách sạn',
-    },
-    {
-        id: '#010',
-        name: 'Ngô Thị K',
-        avatar: null,
-        amount: 800000,
-        date: new Date('2025-04-10'),
-        content: 'Thanh toán bảo hiểm',
-    },
 ];
 
 function TableTransaction() {
@@ -139,6 +124,7 @@ function TableTransaction() {
     const [order, setOrder] = useState<"asc" | "desc">("asc");
     const [orderBy, setOrderBy] = useState<string>("");
     const [openModal, setOpenModal] = useState(false);
+    const { theme } = useTheme();
 
     const removeVietnameseTones = (str: string) =>
         str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -333,12 +319,7 @@ function TableTransaction() {
                     </Box>
 
                     {/* Date Picker */}
-                    <Box
-                        sx={{
-                            display: "flex",
-                            gap: "24px",
-                        }}
-                    >
+                    <Box sx={{ display: "flex", gap: "24px" }}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DateTimePicker
                                 label={t("COMMON.COURSE.FROM")}
@@ -346,9 +327,7 @@ function TableTransaction() {
                                 onChange={(value) =>
                                     setFilter({
                                         ...filter,
-                                        startDate: convertToVietnamTime(
-                                            value?.toDate() || new Date()
-                                        ),
+                                        startDate: convertToVietnamTime(value?.toDate() || new Date()),
                                     })
                                 }
                                 viewRenderers={{
@@ -359,31 +338,32 @@ function TableTransaction() {
                                 sx={{
                                     width: "100%",
                                     "& .MuiInputBase-root": {
-                                        color: "var(--text-color)",
+                                        color: "var(--text-color)", // Đặt màu chữ của input
                                     },
                                     "& .MuiInputBase-input": {
                                         padding: "15px 0 15px 14px",
+                                        color: theme === "light" ? "#000000" : "#ffffff", // Màu chữ của value
                                     },
                                     "& .MuiInputLabel-root": {
-                                        color: "var(--text-label-color)",
+                                        color: theme === "light" ? "#000000" : "#ffffff", // Màu label
                                     },
                                     "& .MuiOutlinedInput-notchedOutline": {
                                         borderRadius: "8px",
-                                        borderColor: "var(--border-dialog)",
+                                        borderColor: theme === "light" ? "#000000" : "#ffffff !important", // Màu viền
                                     },
                                     "& .MuiSvgIcon-root": {
-                                        color: "var(--text-label-color)", // Màu của icon (lịch)
+                                        color: theme === "light" ? "#000000" : "#ffffff", // Màu icon (lịch)
                                     },
                                     "& .MuiOutlinedInput-root": {
                                         "&:hover .MuiOutlinedInput-notchedOutline": {
-                                            borderColor: "var(--hover-field-color)", // Màu viền khi hover
+                                            borderColor: theme === "light" ? "#1976d2" : "#90caf9", // Màu viền khi hover
                                         },
                                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                            borderColor: "var(--selected-field-color) !important", // Màu viền khi focus, thêm !important để ghi đè
+                                            borderColor: theme === "light" ? "#1976d2" : "#90caf9", // Màu viền khi focus
                                         },
                                     },
                                     "& .MuiInputLabel-root.Mui-focused": {
-                                        color: "var(--selected-field-color)",
+                                        color: theme === "light" ? "#1976d2" : "#90caf9", // Màu label khi focus
                                     },
                                 }}
                             />
@@ -396,9 +376,7 @@ function TableTransaction() {
                                 onChange={(value) =>
                                     setFilter({
                                         ...filter,
-                                        endDate: convertToVietnamTime(
-                                            value?.toDate() || new Date()
-                                        ),
+                                        endDate: convertToVietnamTime(value?.toDate() || new Date()),
                                     })
                                 }
                                 viewRenderers={{
@@ -413,32 +391,34 @@ function TableTransaction() {
                                     },
                                     "& .MuiInputBase-input": {
                                         padding: "15px 0 15px 14px",
+                                        color: theme === "light" ? "#000000" : "#ffffff", // Màu chữ của value
                                     },
                                     "& .MuiInputLabel-root": {
-                                        color: "var(--text-label-color)",
+                                        color: theme === "light" ? "#000000" : "#ffffff", // Màu label
                                     },
                                     "& .MuiOutlinedInput-notchedOutline": {
                                         borderRadius: "8px",
-                                        borderColor: "var(--border-dialog)",
+                                        borderColor: theme === "light" ? "#000000" : "#ffffff", // Màu viền
                                     },
                                     "& .MuiSvgIcon-root": {
-                                        color: "var(--text-label-color)", // Màu của icon (lịch)
+                                        color: theme === "light" ? "#000000" : "#ffffff", // Màu icon (lịch)
                                     },
                                     "& .MuiOutlinedInput-root": {
                                         "&:hover .MuiOutlinedInput-notchedOutline": {
-                                            borderColor: "var(--hover-field-color)", // Màu viền khi hover
+                                            borderColor: theme === "light" ? "#1976d2" : "#90caf9", // Màu viền khi hover
                                         },
                                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                            borderColor: "var(--selected-field-color) !important", // Màu viền khi focus, thêm !important để ghi đè
+                                            borderColor: theme === "light" ? "#1976d2" : "#90caf9", // Màu viền khi focus
                                         },
                                     },
                                     "& .MuiInputLabel-root.Mui-focused": {
-                                        color: "var(--selected-field-color)",
+                                        color: theme === "light" ? "#1976d2" : "#90caf9", // Màu label khi focus
                                     },
                                 }}
                             />
                         </LocalizationProvider>
                     </Box>
+
                 </Box>
 
                 <Box>

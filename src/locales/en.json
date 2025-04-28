@@ -557,7 +557,8 @@
             "TITLE_REPORT": "Report a violation",
             "TOTAL_REPORT": "report",
             "POST_ID": "Post ID",
-            "USER_ID": "User ID"
+            "USER_ID": "User ID",
+            "TITLE_PAGE": "Course management"
         },
         "EMPLOYEE": {
             "FULLNAME": "Full Name",

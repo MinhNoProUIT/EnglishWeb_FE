@@ -259,8 +259,16 @@ function TablePost() {
                 width: "100%",
                 overflow: "hidden",
                 backgroundColor: "var(--background-item)",
+                borderRadius: 4,
+                boxShadow: 'var(--box-shadow-paper)',
+                p: 2,
+                display: "flex",
+                flexDirection: "column",
+                height: "100%", // hoặc 1 chiều cao cố định nếu bạn muốn ví dụ 100vh, 80vh tùy trang
+                minHeight: "600px", // đề phòng bảng quá ngắn
             }}
         >
+
             {/* tilte */}
             <Typography
                 sx={{
@@ -385,57 +393,22 @@ function TablePost() {
                         </Select>
                     </FormControl>
                 </Box>
-
-                <Box>
-                    <FormControl
-                        sx={{
-                            width: "140px",
-                            height: "53px",
-                            "& fieldset": {
-                                borderRadius: "8px",
-                                borderColor: "var(--border-color)", // Viền mặc định
-                            },
-                            "& .MuiOutlinedInput-root:hover fieldset": {
-                                borderColor: "var(--hover-field-color)", // Màu hover khi không lỗi
-                            },
-                            "& .MuiOutlinedInput-root.Mui-error:hover fieldset": {
-                                borderColor: "var(--error-color)", // Màu hover khi lỗi
-                            },
-                            "& .MuiOutlinedInput-root.Mui-error fieldset": {
-                                borderColor: "var(--error-color)", // Màu viền khi lỗi
-                            },
-                            "& .MuiOutlinedInput-root.Mui-focused fieldset": {
-                                borderColor: "var(--selected-field-color)", // Màu viền khi focus
-                            },
-                            "& .MuiOutlinedInput-root.Mui-error.Mui-focused fieldset": {
-                                borderColor: "var(--error-color)", // Màu viền khi lỗi và focus
-                            },
-                            "& .MuiInputLabel-root": {
-                                color: "var(--text-label-color)", // Label mặc định
-                            },
-                            "& .MuiInputLabel-root.Mui-focused": {
-                                color: "var(--selected-field-color)", // Label khi focus
-                            },
-                            "& .MuiInputLabel-root.Mui-error": {
-                                color: "var(--error-color)", // Label khi lỗi
-                            },
-                        }}
-                    >
-                    </FormControl>
-                </Box>
             </Box>
             {/* table */}
-            <TableDataPost
-                postsData={postsData}
-                totalRecords={totalRecords}
-                onSort={handleSort}
-            />
+            <Box sx={{ flexGrow: 1, overflow: "hidden" }}>
+                <TableDataPost
+                    postsData={postsData}
+                    totalRecords={totalRecords}
+                    onSort={handleSort}
+                />
+            </Box>
 
             <Box
                 display="flex"
                 alignItems="center"
                 justifyContent="space-between"
                 padding="24px"
+                sx={{ flexShrink: 0 }}
             >
                 <Box display="flex" alignItems="center">
                     <Typography sx={{ mr: "10px", color: "var(--text-color)" }}>
@@ -504,9 +477,6 @@ function TablePost() {
                             10
                         </MenuItem>
                     </Select>
-                    {/* <Typography sx={{ ml: "30px", color: "var(--text-color)" }}>
-                        {t("COMMON.PAGINATION.FROM_TO", { from, to, totalRecords })}
-                    </Typography> */}
                 </Box>
                 <Pagination
                     count={Math.ceil(mockPosts.length / Number(rowsPerPage))}

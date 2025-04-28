@@ -22,6 +22,7 @@ import {
     Typography,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from 'next-themes';
 
 echarts.use([
     TooltipComponent,
@@ -55,30 +56,27 @@ const PostChart = () => {
     const [data, setData] = useState(generateMockData(7));
 
     const { t } = useTranslation("common");
+    const { theme } = useTheme();
 
     useEffect(() => {
         if (!chartRef.current) return;
 
+        echarts.dispose(chartRef.current);
         const chartInstance = echarts.init(chartRef.current);
 
-        const computedColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--text-color')
-            .trim();
-
         const option: echarts.EChartsCoreOption = {
-            textStyle: {
-                color: computedColor,
-            },
             tooltip: {
                 trigger: 'axis',
+                backgroundColor: theme === "light" ? "rgba(250, 250, 250, 0.98)" : "rgba(20, 26, 25, 0.98)",
                 textStyle: {
-                    color: computedColor,
+                    color: theme === "light" ? "#000000" : "#ffffff",
                 },
             },
             legend: {
                 top: 40,
                 textStyle: {
-                    color: computedColor,
+                    color: theme === "light" ? "black" : "#fff",
+                    fontFamily: "Arial, sans-serif",
                 },
             },
             xAxis: {
@@ -86,13 +84,13 @@ const PostChart = () => {
                 boundaryGap: false,
                 data: data.map((item) => item.date),
                 axisLabel: {
-                    color: computedColor,
+                    color: theme === "light" ? "black" : "#fff",
                 },
             },
             yAxis: {
                 type: 'value',
                 axisLabel: {
-                    color: computedColor,
+                    color: theme === "light" ? "black" : "#fff",
                 },
             },
             series: [
@@ -111,7 +109,8 @@ const PostChart = () => {
         return () => {
             chartInstance.dispose();
         };
-    }, [data, t]);
+    }, [data, theme, t]); // chỉ còn [data, theme]
+
 
     const handleChange = (event: SelectChangeEvent) => {
         const value = event.target.value;

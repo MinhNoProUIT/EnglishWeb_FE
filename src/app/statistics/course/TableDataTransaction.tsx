@@ -72,15 +72,29 @@ function TableDataTransaction({ transactionData, totalRecords, onSort }: IProps)
         setOrderBy(property)
     }
 
+    const rowHeight = 60;
+
+    const calculateEmptyRows = () => {
+        if (transactionData.length <= 5) {
+            return 5 - transactionData.length;
+        } else if (transactionData.length <= 10) {
+            return 10 - transactionData.length;
+        }
+        return 0;
+    };
+
+    const emptyRows = calculateEmptyRows();
+
     return (
         <TableContainer
             sx={{
-                scrollbarGutter: 'stable',
-                paddingLeft: '7px',
+                height: transactionData.length <= 5 ? `${7 * rowHeight + 64}px` : `${13 * rowHeight + 64}px`,
+                overflowX: 'hidden',
+                paddingLeft: '8px',
                 '&::-webkit-scrollbar-thumb': {
                     backgroundColor: 'var(--scrollbar-color)',
                     borderRadius: '10px'
-                }
+                },
             }}
         >
             {/* table */}
@@ -88,17 +102,16 @@ function TableDataTransaction({ transactionData, totalRecords, onSort }: IProps)
                 <TableHead>
                     <TableRow
                         sx={{
-                            backgroundColor: '#f5f5f5', // nền nhạt dễ nhìn
+                            height: 64,
+                            backgroundColor: 'var(--header-table-dashboard) !important', // Đặt !important để ưu tiên
                             '& th': {
-                                backgroundColor: '#f5f5f5',
-                                fontWeight: 'bold',
-                                color: '#333', // chữ đậm
-                                fontSize: '16px',
-                                borderBottom: '2px solid #e0e0e0', // viền mờ nhẹ
+                                backgroundColor: 'var(--header-table-dashboard) !important', // Áp dụng cho các ô
+                                padding: '16px 24px', // Apply consistent padding to all headers
+                                borderColor: 'var(--border-color)'
                             },
                             '&:last-child td, &:last-child th': {
-                                borderBottom: 'none',
-                            },
+                                border: 'none'
+                            }
                         }}
                     >
                         {/* full name */}
@@ -240,10 +253,7 @@ function TableDataTransaction({ transactionData, totalRecords, onSort }: IProps)
                             <TableCell padding="normal">
                                 <Box display="flex" alignItems="center" gap={2}>
                                     <Avatar
-                                        src={
-                                            row.avatar ||
-                                            'https://localhost:44381/avatars/aa1678f0-75b0-48d2-ae98-50871178e9bd.jfif'
-                                        }
+                                        src={row.avatar}
                                     />
                                     <Box>
                                         <Typography variant="body1" sx={{ color: 'var(--text-color)' }} noWrap>
@@ -275,7 +285,7 @@ function TableDataTransaction({ transactionData, totalRecords, onSort }: IProps)
                             </TableCell>
 
                             {/* Action */}
-                            <TableCell sx={{ paddingLeft: 20, color: 'var(--text-color)' }}>
+                            <TableCell sx={{ paddingLeft: 6, color: 'var(--text-color)' }}>
                                 <Tooltip title={t('COMMON.ERROR_REPORT.CONSIDER')}>
                                     <Box
                                         onClick={() => handleOpenDetailModal(row)}
@@ -298,6 +308,13 @@ function TableDataTransaction({ transactionData, totalRecords, onSort }: IProps)
                             </TableCell>
                         </TableRow>
                     ))}
+                    {emptyRows > 0 && (
+                        Array.from({ length: emptyRows }).map((_, index) => (
+                            <TableRow key={`empty-${index}`} sx={{ height: `${rowHeight}px` }}>
+                                <TableCell colSpan={5} sx={{ borderBottom: 'none' }} />
+                            </TableRow>
+                        ))
+                    )}
                 </TableBody>
             </Table>
             {selectedTransaction && (
