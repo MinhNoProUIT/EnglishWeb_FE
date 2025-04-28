@@ -90,7 +90,7 @@ export default function ReportPost() {
                 padding: '24px 0',
                 backgroundColor: 'var(--background-item)',
                 borderRadius: '15px',
-                height: '714px',
+                height: '774px',
                 display: 'flex',
                 boxShadow: 4,
                 flexDirection: 'column'
