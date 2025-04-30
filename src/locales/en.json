@@ -165,7 +165,13 @@
       "REPORTS_SYSTEM": "Reports - System",
       "ATTENDANCE": "Attendance",
       "WORKHISTORY": "Work History",
-      "CREATETASKS": "Create tasks"
+      "CREATETASKS": "Create tasks",
+      "POST": "Bài đăng",
+      "WORKHISTORY": "Lịch sử công tác",
+      "CREATETASKS": "Tạo công tác",
+      "TOTAL_POST": "Total posts",
+      "COURSE": "Course",
+      "LEARNING": "Learning"
     },
     "MODE": {
       "LIGHT": "Light",
@@ -480,6 +486,42 @@
       "TYPE": "Type",
       "STATUS": "Status"
     },
+    "COURSE": {
+      "TOTAL_COURSE": "Total Courses",
+      "PAID_COURSE": "Paid Courses",
+      "CONVERSION_RATE": "Conversion Rate",
+      "TITLE_CHART": "Monthly revenue",
+      "MONEY": "Money",
+      "CONTENT": "Content transaction",
+      "DATE_TRANSACTION": "Date transaction",
+      "TITLE_TABLE": "List of transactions",
+      "FROM": "From",
+      "TO": "To",
+      "TITLE_REPORT": "Report a violation",
+      "TOTAL_REPORT": "report",
+      "POST_ID": "Post ID",
+      "USER_ID": "User ID"
+    },
+    "POST": {
+      "TOTAL_POST": "Total posts",
+      "TITLE_CHART": " Statistics of number of posts",
+      "TOTAL_USER_POST": "Total users post",
+      "TITLE_TABLE": "List of posts",
+      "FULL_NAME": "Full Name",
+      "COUNT_POST": "Count Post",
+      "COUNT_LIKE": "Count Like",
+      "COUNT_SHARE": "Count Share",
+      "TITLE_TOP_RANKING": "Ranking",
+      "COUNT_POSTS": "posts",
+      "CHOOSE_TIME": "Choose time period",
+      "7_DAYS": "7 days",
+      "30_DAYS": "30 days",
+      "90_DAYS": "3 months",
+      "ALL": "All",
+      "LESS_THAN": "Less than 10",
+      "BETWEEN": "From 10 to 30",
+      "MORE_THAN": "More than 30"
+    },
     "ERROR_REPORT": {
       "ERROR_REPORT": "Fill in the error report",
       "TITLE": "Error report list",
@@ -532,6 +574,7 @@
       "DEPARTMENTNAME": "Department Name",
       "USERNAME": "Username",
       "ROLES": "Roles",
+      "CREATEDDATE": "Created Date",
       "BIRTHDAY": "Birthday",
       "GENDER": "Gender",
       "ADDRESS": "Address",
@@ -837,6 +880,17 @@
       "ERROR_STATISTICS_CHART_HIGH": "High",
       "ERROR_STATISTICS_CHART_SHORT": "Low",
       "ERROR_STATISTICS_CHART": "Error report statistics chart"
+    },
+    "LEARNING": {
+      "LONGEST_CHAIN": "LONGEST LEARNING CHAIN",
+      "SHORTEST_CHAIN": "SHORTEST LEARNING CHAIN",
+      "EXERCISE": "Exercise",
+      "THE_MOST_TOPIC": "The most popular topic",
+      "CHAIN": "Chain",
+      "LEARNING_WORD": "Word",
+      "LEARNING_TOPIC": "Topic",
+      "LEARNING_TIME": "Learning Time",
+      "LEARNING_LIST": "Learning List"
     }
   }
 }

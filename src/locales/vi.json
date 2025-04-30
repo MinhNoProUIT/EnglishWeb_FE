@@ -166,7 +166,8 @@
       "WORKHISTORY": "Lịch sử công tác",
       "CREATETASKS": "Tạo công tác",
       "TOTAL_POST": "Tổng bài đăng",
-      "COURSE": "Khóa học"
+      "COURSE": "Khóa học",
+      "LEARNING": "Học tập"
     },
     "MODE": {
       "LIGHT": "Sáng",
@@ -476,6 +477,7 @@
       "DEPARTMENTNAME": "Tên phòng ban",
       "USERNAME": "Tên người dùng",
       "ROLES": "Vai trò",
+      "CREATEDDATE": "Ngày tạo",
       "BIRTHDAY": "Ngày sinh",
       "GENDER": "Giới tính",
       "ADDRESS": "Địa chỉ",
@@ -835,6 +837,17 @@
       "ERROR_STATISTICS_CHART_HIGH": "Cao",
       "ERROR_STATISTICS_CHART_SHORT": "Thấp",
       "ERROR_STATISTICS_CHART": "Biểu đồ thống kê báo lỗi"
+    },
+    "LEARNING": {
+      "LONGEST_CHAIN": "Chuỗi học dài nhất",
+      "SHORTEST_CHAIN": "Chuỗi học ngắn nhất",
+      "EXERCISE": "Bài",
+      "THE_MOST_TOPIC": "Chủ đề phổ biến nhất",
+      "CHAIN": "Chuỗi",
+      "LEARNING_WORD": "Từ",
+      "LEARNING_TOPIC": "Chủ đề",
+      "LEARNING_TIME": "Thời gian học",
+      "LEARNING_LIST": "Danh sách học tập"
     }
   }
 }
