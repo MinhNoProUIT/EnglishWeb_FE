@@ -51,6 +51,7 @@ const columnKeys = [
   "birthday",
   "gender",
   "address",
+  "createddate",
   "roles",
   "balance",
 ];
@@ -264,7 +265,6 @@ function EmployeeTable() {
           backgroundColor: "var(--background-item)",
         }}
       >
-        {/* Search and Top Action Buttons */}
         <Box
           display="flex"
           alignItems="center"
@@ -273,8 +273,6 @@ function EmployeeTable() {
         >
           {/* Search Input */}
           <Box sx={{ position: "relative", width: "auto", height: "55px" }}>
-            {" "}
-            {/* Changed width to auto */}
             <TextField
               variant="outlined"
               placeholder={t("COMMON.SYS_CONFIGURATION.PLACEHOLDER_SEARCH")}
@@ -337,7 +335,6 @@ function EmployeeTable() {
               }}
             />
           </Box>
-          {/* Action Buttons Area */}
           <Box
             display="flex"
             alignItems="center"
@@ -345,8 +342,6 @@ function EmployeeTable() {
             gap="20px"
             flexGrow={1}
           >
-            {" "}
-            {/* Use flexGrow */}
             <Typography
               sx={{
                 color: "red",
@@ -421,10 +416,8 @@ function EmployeeTable() {
           }}
         >
           <Table>
-            {/* Table Header */}
             <TableHead>
               <TableRow sx={{ backgroundColor: "var(--header-color-table)" }}>
-                {/* Select All Checkbox */}
                 <TableCell
                   padding="checkbox"
                   sx={{
@@ -447,7 +440,6 @@ function EmployeeTable() {
                     sx={{ color: "var(--text-color)", width: "48px" }}
                   />
                 </TableCell>
-                {/* Column Headers */}
                 {columnKeys.map(
                   (
                     columnKey,
@@ -502,7 +494,6 @@ function EmployeeTable() {
                     </TableCell>
                   )
                 )}
-                {/* Action Header */}
                 <TableCell
                   sx={{
                     borderColor: "var(--border-color)",
@@ -531,12 +522,8 @@ function EmployeeTable() {
               </TableRow>
             </TableHead>
 
-            {/* Table Body */}
             <TableBody>
-              {/* Example Row 1 (Active User) */}
               <TableRow hover>
-                {" "}
-                {/* Added hover effect */}
                 <TableCell
                   padding="checkbox"
                   sx={{
@@ -576,8 +563,6 @@ function EmployeeTable() {
                 </TableCell>
                 <TableCell sx={{ borderColor: "var(--border-color)" }}>
                   <Box display="flex" alignItems="center">
-                    {" "}
-                    {/* Wrap avatar and text */}
                     <Avatar
                       src="/placeholder-avatar.png"
                       alt="Avatar"
@@ -669,6 +654,20 @@ function EmployeeTable() {
                       color: "var(--text-color)",
                       fontSize: "16px",
                       whiteSpace: "nowrap",
+                      maxWidth: 150,
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    12/3/2024
+                  </Typography>
+                </TableCell>
+                <TableCell sx={{ borderColor: "var(--border-color)" }}>
+                  <Typography
+                    sx={{
+                      color: "var(--text-color)",
+                      fontSize: "16px",
+                      whiteSpace: "nowrap",
                     }}
                   >
                     Admin
@@ -685,7 +684,6 @@ function EmployeeTable() {
                     100
                   </Typography>
                 </TableCell>
-                {/* Action Cell */}
                 <TableCell
                   sx={{
                     padding: "0px 9.5px",
@@ -809,12 +807,9 @@ function EmployeeTable() {
           padding="15px"
         >
           <Box display="flex" alignItems="center" gap={2}>
-            {" "}
-            {/* Use gap */}
             <Typography
               sx={{ color: "var(--text-color)", whiteSpace: "nowrap" }}
             >
-              {" "}
               {t("COMMON.PAGINATION.ROWS_PER_PAGE")}{" "}
             </Typography>
             <Select
@@ -879,7 +874,6 @@ function EmployeeTable() {
             <Typography
               sx={{ color: "var(--text-color)", whiteSpace: "nowrap" }}
             >
-              {" "}
               {t("COMMON.PAGINATION.FROM_TO", { from, to, totalRecords })}{" "}
             </Typography>
           </Box>

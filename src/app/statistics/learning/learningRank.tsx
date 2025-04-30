@@ -1,124 +1,66 @@
+"use client";
+import React from "react";
+
 import { Avatar, Box, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Star } from "lucide-react";
 import { IPostListItem } from "@/interfaces/post.interface";
 import Image from "next/image";
 
-const mockPosts: IPostListItem[] = [
+interface learningCount {
+  id: number;
+  name: string;
+  avt: string;
+  exerciseCount: number;
+}
+
+const mockLearningCounts: learningCount[] = [
   {
-    id: 1,
-    title: "Button on home page is unresponsive",
-    createdBy: "Nguyễn Văn A",
-    createdById: "U001",
-    createdByAvatar: "",
-    createdDate: new Date(),
-    totalPosts: 5,
-    likesCount: 12,
-    sharesCount: 4,
-    isReported: true,
+    id: 101,
+    name: "Nguyễn Thị Mai",
+    avt: "", // Example avatar path
+    exerciseCount: 85, // Number of exercises completed
   },
   {
-    id: 2,
-    title: "Image not loading on profile page",
-    createdBy: "Trần Thị B",
-    createdById: "U002",
-    createdByAvatar: "",
-    createdDate: new Date("2024-12-10T14:48:00"),
-    totalPosts: 2,
-    likesCount: 20,
-    sharesCount: 6,
-    isReported: true,
+    id: 102,
+    name: "Trần Văn Khang",
+    avt: "", // Can be an empty string if no avatar
+    exerciseCount: 120,
   },
   {
-    id: 3,
-    title: "Crash when clicking settings",
-    createdBy: "Lê Văn C",
-    createdById: "U003",
-    createdByAvatar: "",
-    createdDate: new Date("2024-12-01T09:20:00"),
-    totalPosts: 7,
-    likesCount: 35,
-    sharesCount: 12,
-    isReported: true,
+    id: 103,
+    name: "Lê Anh Tú",
+    avt: "",
+    exerciseCount: 78,
   },
   {
-    id: 4,
-    title: "Login fails with correct credentials",
-    createdBy: "Phạm Duy K",
-    createdById: "U004",
-    createdByAvatar: "",
-    createdDate: new Date("2024-11-25T11:10:00"),
-    totalPosts: 4,
-    likesCount: 9,
-    sharesCount: 3,
-    isReported: false,
+    id: 104,
+    name: "Phạm Thuỳ Linh",
+    avt: "", // Example remote URL
+    exerciseCount: 95,
   },
   {
-    id: 5,
-    title: "Cannot upload avatar",
-    createdBy: "Đinh Thị D",
-    createdById: "U005",
-    createdByAvatar: "",
-    createdDate: new Date("2024-11-20T10:30:00"),
-    totalPosts: 6,
-    likesCount: 25,
-    sharesCount: 5,
-    isReported: true,
-  },
-  {
-    id: 6,
-    title: "Page freezes when scrolling",
-    createdBy: "Lương Văn E",
-    createdById: "U006",
-    createdByAvatar: "",
-    createdDate: new Date("2024-11-18T08:45:00"),
-    totalPosts: 3,
-    likesCount: 17,
-    sharesCount: 2,
-    isReported: false,
+    id: 105,
+    name: "Hoàng Minh Đức",
+    avt: "",
+    exerciseCount: 60,
   },
 ];
 
-const aggregateEmployees = () => {
-  const map = new Map<
-    string,
-    { id: string; name: string; avatar: string; count: number }
-  >();
+// Bạn có thể sử dụng mockLearningCounts trong component của mình
+// Ví dụ: console.log(mockLearningCounts);
 
-  for (const post of mockPosts) {
-    if (!map.has(post.createdById)) {
-      map.set(post.createdById, {
-        id: post.createdById,
-        name: post.createdBy,
-        avatar: post.createdByAvatar,
-        count: post.totalPosts,
-      });
-    } else {
-      const existing = map.get(post.createdById)!;
-      existing.count += post.totalPosts;
-    }
-  }
-
-  return Array.from(map.values()).sort((a, b) => b.count - a.count);
+const rankLearningCounts = (data: learningCount[]) => {
+  // Create a shallow copy before sorting to avoid mutating the original array
+  return data.slice().sort((a, b) => b.exerciseCount - a.exerciseCount);
 };
 
-function RankLike() {
-  const { t } = useTranslation("common");
-
-  const employees = aggregateEmployees();
-
-  const topFive = mockPosts
-    .sort((a, b) => b.totalPosts - a.totalPosts)
-    .slice(0, 5)
-    .map((item) => ({
-      id: item.id,
-      name: item.createdBy,
-      avatar: item.createdByAvatar,
-      count: item.totalPosts,
-    }));
-
+export default function LearningRank() {
+  const { t } = useTranslation();
+  // Use the ranked learning counts data
+  const rankedLearners = rankLearningCounts(mockLearningCounts);
   return (
-    <Box width="35%">
+    <Box width="30%">
       <Paper
         sx={{
           width: "100%",
@@ -221,7 +163,7 @@ function RankLike() {
                         left: "calc(50%)",
                         borderRadius: "50%",
                         transform: "translateX(-50%)",
-                        top: "-145px",
+                        top: "-165px",
                         border: "2px solid #00D95F",
                         zIndex: 1,
                         overflow: "visible", // Cho phép phần tử con thoát ra ngoài
@@ -255,7 +197,7 @@ function RankLike() {
                       }}
                     >
                       <Avatar
-                        src={employees[1]?.avatar}
+                        src={rankedLearners[1]?.avt}
                         sx={{
                           position: "absolute",
                           width: "60px",
@@ -266,15 +208,21 @@ function RankLike() {
                     <Typography
                       sx={{
                         position: "absolute",
-                        transform: "translateX(30%)",
+                        right: "50%",
+                        transform: "translateX(50%)",
                         fontSize: "15px",
-                        alignItems: "center",
-                        fontWeight: "bold",
                         color: "white",
-                        top: "-70px",
+                        zIndex: 2,
+                        fontWeight: "bold",
+                        top: "-85px", // Đặt thấp hơn để tránh đè lên exerciseCount
+                        width: "80%", // Giới hạn chiều rộng
+                        maxWidth: "120px", // Tùy theo layout
+                        textAlign: "center", // Căn giữa chữ
+                        wordWrap: "break-word", // Cho phép xuống dòng
+                        lineHeight: "18px",
                       }}
                     >
-                      {employees[1]?.name}
+                      {rankedLearners[1]?.name}
                     </Typography>
 
                     <Typography
@@ -292,7 +240,9 @@ function RankLike() {
                         top: "-40px",
                       }}
                     >
-                      {employees[1].count + " " + t("COMMON.POST.COUNT_POSTS")}
+                      {rankedLearners[1].exerciseCount +
+                        " " +
+                        t("COMMON.LEARNING.EXERCISE")}
                     </Typography>
                   </Box>
 
@@ -317,7 +267,7 @@ function RankLike() {
                         left: "50%",
                         borderRadius: "50%",
                         transform: "translateX(-50%)",
-                        top: "-155px",
+                        top: "-165px",
                         border: "2px solid #FFAA00",
                         zIndex: 1,
                         overflow: "visible", // Cho phép phần tử con thoát ra ngoài
@@ -351,7 +301,7 @@ function RankLike() {
                       }}
                     >
                       <Avatar
-                        src={employees[0]?.avatar}
+                        src={rankedLearners[0]?.avt}
                         sx={{
                           position: "absolute",
                           width: "70px",
@@ -377,14 +327,21 @@ function RankLike() {
                     <Typography
                       sx={{
                         position: "absolute",
+                        right: "50%",
                         transform: "translateX(50%)",
                         fontSize: "15px",
-                        fontWeight: "bold",
                         color: "white",
-                        top: "-70px",
+                        zIndex: 2,
+                        fontWeight: "bold",
+                        top: "-85px", // Đặt thấp hơn để tránh đè lên exerciseCount
+                        width: "80%", // Giới hạn chiều rộng
+                        maxWidth: "120px", // Tùy theo layout
+                        textAlign: "center", // Căn giữa chữ
+                        wordWrap: "break-word", // Cho phép xuống dòng
+                        lineHeight: "18px",
                       }}
                     >
-                      {employees[0]?.name}
+                      {rankedLearners[0]?.name}
                     </Typography>
 
                     <Typography
@@ -402,7 +359,9 @@ function RankLike() {
                         top: "-40px",
                       }}
                     >
-                      {employees[0]?.count + " " + t("COMMON.POST.COUNT_POSTS")}
+                      {rankedLearners[0]?.exerciseCount +
+                        " " +
+                        t("COMMON.LEARNING.EXERCISE")}
                     </Typography>
                   </Box>
 
@@ -426,7 +385,7 @@ function RankLike() {
                         borderRadius: "50%",
                         right: "50%",
                         transform: "translateX(50%)",
-                        top: "-145px",
+                        top: "-165px",
                         border: "2px solid red",
                         zIndex: 1,
                         overflow: "visible", // Cho phép phần tử con thoát ra ngoài
@@ -460,7 +419,7 @@ function RankLike() {
                       }}
                     >
                       <Avatar
-                        src={employees[2]?.avatar}
+                        src={rankedLearners[2]?.avt}
                         sx={{
                           position: "absolute",
                           width: "60px",
@@ -472,15 +431,21 @@ function RankLike() {
                     <Typography
                       sx={{
                         position: "absolute",
-                        transform: "translateX(10%)",
+                        right: "50%",
+                        transform: "translateX(50%)",
                         fontSize: "15px",
                         color: "white",
                         zIndex: 2,
                         fontWeight: "bold",
-                        top: "-70px",
+                        top: "-85px", // Đặt thấp hơn để tránh đè lên exerciseCount
+                        width: "80%", // Giới hạn chiều rộng
+                        maxWidth: "120px", // Tùy theo layout
+                        textAlign: "center", // Căn giữa chữ
+                        wordWrap: "break-word", // Cho phép xuống dòng
+                        lineHeight: "18px",
                       }}
                     >
-                      {employees[2]?.name}
+                      {rankedLearners[2]?.name}
                     </Typography>
 
                     <Typography
@@ -498,7 +463,9 @@ function RankLike() {
                         top: "-40px",
                       }}
                     >
-                      {employees[2]?.count + " " + t("COMMON.POST.COUNT_POSTS")}
+                      {rankedLearners[2]?.exerciseCount +
+                        " " +
+                        t("COMMON.LEARNING.EXERCISE")}
                     </Typography>
                   </Box>
                 </Box>
@@ -525,7 +492,7 @@ function RankLike() {
               >
                 <Box
                   sx={{
-                    maxHeight: 300,
+                    maxHeight: 500,
                     overflow: "auto",
                     scrollbarGutter: "stable",
                     padding: "0 1px 7px 7px",
@@ -540,7 +507,7 @@ function RankLike() {
                     pr: 1,
                   }}
                 >
-                  {topFive.map((user, index) => (
+                  {rankedLearners.map((user, index) => (
                     <Box
                       key={index}
                       sx={{
@@ -604,7 +571,7 @@ function RankLike() {
                             height: "45px",
                           }}
                           src={
-                            user.avatar ||
+                            user.avt ||
                             "https://localhost:44381/avatars/aa1678f0-75b0-48d2-ae98-50871178e9bd.jfif"
                           }
                         />
@@ -652,7 +619,7 @@ function RankLike() {
                             marginRight: "6px",
                           }}
                         />
-                        {user.count}
+                        {user.exerciseCount}
                       </Box>
                     </Box>
                   ))}
@@ -661,9 +628,7 @@ function RankLike() {
             </Box>
           </Box>
         </Box>
-      </Paper >
-    </Box >
+      </Paper>
+    </Box>
   );
 }
-
-export default RankLike;

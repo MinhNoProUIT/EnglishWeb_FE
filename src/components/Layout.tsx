@@ -46,8 +46,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Sidebar>
         {(menuLeft["Home"].IsAllowView ||
           menuLeft["Statistics"].IsAllowView) && (
-            <TypographyItem text={t("COMMON.SIDEBAR.DASHBOARD")} />
-          )}
+          <TypographyItem text={t("COMMON.SIDEBAR.DASHBOARD")} />
+        )}
         {menuLeft["Home"].IsAllowView && (
           <SidebarItem
             icon={<Home />}
@@ -60,8 +60,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <SidebarItem
             icon={<ChartNoAxesCombined />}
             text={t("COMMON.SIDEBAR.STATISTICS")}
-          // route='/statistics'
-          // active={pathname === '/statistics'}
+            // route='/statistics'
+            // active={pathname === '/statistics'}
           >
             {menuLeft["/statistics/post"]?.IsAllowView && (
               <SidebarItem
@@ -77,6 +77,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 text={t("COMMON.SIDEBAR.COURSE")}
                 route="/statistics/course"
                 active={pathname === "/statistics/course"}
+              />
+            )}
+            {menuLeft["/statistics/course"]?.IsAllowView && (
+              <SidebarItem
+                icon={<MenuBookOutlined />}
+                text={t("COMMON.SIDEBAR.LEARNING")}
+                route="/statistics/learning"
+                active={pathname === "/statistics/learning"}
               />
             )}
             {/* {menuLeft["/admin/statistics/salary"].IsAllowView && (
