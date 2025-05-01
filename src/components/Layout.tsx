@@ -13,6 +13,10 @@ import {
   Scale,
   CalendarClock,
   SlidersHorizontal,
+  Book,
+  BookOpen,
+  NotebookPen,
+  Tags,
 } from "lucide-react";
 import {
   ChartNoAxesCombined,
@@ -46,8 +50,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Sidebar>
         {(menuLeft["Home"].IsAllowView ||
           menuLeft["Statistics"].IsAllowView) && (
-          <TypographyItem text={t("COMMON.SIDEBAR.DASHBOARD")} />
-        )}
+            <TypographyItem text={t("COMMON.SIDEBAR.DASHBOARD")} />
+          )}
         {menuLeft["Home"].IsAllowView && (
           <SidebarItem
             icon={<Home />}
@@ -60,8 +64,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <SidebarItem
             icon={<ChartNoAxesCombined />}
             text={t("COMMON.SIDEBAR.STATISTICS")}
-            // route='/statistics'
-            // active={pathname === '/statistics'}
+          // route='/statistics'
+          // active={pathname === '/statistics'}
           >
             {menuLeft["/statistics/post"]?.IsAllowView && (
               <SidebarItem
@@ -125,6 +129,38 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 text={t("COMMON.SIDEBAR.NOTIFICATIONS_EVENTS")}
                 route="/admin/statistics/notifications-events"
                 active={pathname === "/admin/statistics/notifications-events"}
+              />
+            )}
+          </SidebarItem>
+        )}
+
+        {menuLeft["LearningContent"].IsAllowView && (
+          <SidebarItem
+            icon={<Book />}
+            text="Learning content"
+          >
+            {menuLeft["Topics"].IsAllowView && (
+              <SidebarItem
+                icon={<Tags />}
+                text="Chủ đề"
+                route="/learning-content/topics"
+                active={pathname === "/learning-content/topics"}
+              />
+            )}
+            {menuLeft["Courses"].IsAllowView && (
+              <SidebarItem
+                icon={<NotebookPen />}
+                text="Khoá học"
+                route="/learning-content/courses"
+                active={pathname === "/learning-content/courses"}
+              />
+            )}
+            {menuLeft["Vocabulary"].IsAllowView && (
+              <SidebarItem
+                icon={<BookOpen />}
+                text="Từ vựng"
+                route="/learning-content/vocabulary"
+                active={pathname === "/learning-content/vocabulary"}
               />
             )}
           </SidebarItem>

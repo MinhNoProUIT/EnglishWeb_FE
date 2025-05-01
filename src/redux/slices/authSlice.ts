@@ -33,6 +33,10 @@ const initialState: MenuLeftState = {
   Course: { IsAllowView: true },
   Discipline: { IsAllowView: true },
   Configuration: { IsAllowView: true },
+  LearningContent: { IsAllowView: true},
+  Topics: { IsAllowView: true},
+  Courses: { IsAllowView: true},
+  Vocabulary: { IsAllowView: true},
 
   // Thêm mock cho submenu nếu cần
   "/statistics/post": { IsAllowView: true },
