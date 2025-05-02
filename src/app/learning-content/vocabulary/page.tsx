@@ -76,7 +76,7 @@ export default function CoursesPage() {
                     marginX: "10px",
                 }}
             >
-                Danh sách từ vựng
+                {t("COMMON.COURSES.TITLE")}
             </Typography>
             <Box
                 sx={{
@@ -95,7 +95,7 @@ export default function CoursesPage() {
                     <TextField
                         id="location-search"
                         type="search"
-                        placeholder={t("COMMON.ERROR_REPORT.SEARCH")}
+                        placeholder={t("COMMON.TOPIC.SEARCH_BY") + t("COMMON.VOCABULARY.TABLE." + searchBy)}
                         variant="outlined"
                         required
                         value={searchKey}
@@ -197,25 +197,25 @@ export default function CoursesPage() {
                             }}
                         >
                             <MenuItem value="eng">
-                                Nghĩa tiếng anh
+                                {t("COMMON.VOCABULARY.TABLE.eng")}
                             </MenuItem>
                             <MenuItem value="vie">
-                                Nghĩa tiếng Việt
+                                {t("COMMON.VOCABULARY.TABLE.vie")}
                             </MenuItem>
                             <MenuItem value="transcription">
-                                Phiên âm
+                                {t("COMMON.VOCABULARY.TABLE.transcription")}
                             </MenuItem>
                             <MenuItem value="type">
-                                Loại từ
+                                {t("COMMON.VOCABULARY.TABLE.type")}
                             </MenuItem>
                             <MenuItem value="course">
-                                Khoá học
+                                {t("COMMON.VOCABULARY.TABLE.course")}
                             </MenuItem>
                             <MenuItem value="example">
-                                Ví dụ
+                                {t("COMMON.VOCABULARY.TABLE.example")}
                             </MenuItem>
                             <MenuItem value="image">
-                                Hình ảnh
+                                {t("COMMON.VOCABULARY.TABLE.image")}
                             </MenuItem>
                         </Select>
                     </FormControl>
@@ -235,7 +235,7 @@ export default function CoursesPage() {
                         textTransform: "none",
                     }}
                 >
-                    Create
+                    {t("COMMON.BUTTON.CREATE")}
                 </Button>
             </Box>
 
@@ -263,7 +263,6 @@ export default function CoursesPage() {
             />
 
             <ConfirmDeleteDialog
-                object="từ vựng"
                 open={isDeleteConfirmOpen}
                 onClose={() => setIsDeleteConfirmOpen(false)}
                 onConfirm={() => {

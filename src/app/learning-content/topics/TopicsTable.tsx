@@ -12,8 +12,9 @@ import {
     TableRow,
     TableSortLabel,
 } from "@mui/material";
-import { VisibilityOutlined, EditOutlined, DeleteOutline, } from "@mui/icons-material";
+import { EditOutlined, DeleteOutline, } from "@mui/icons-material";
 import { ITopic } from "@/interfaces/topic.interface";
+import { useTranslation } from "react-i18next";
 
 export default function TopicsTable({
     topicsData,
@@ -24,6 +25,7 @@ export default function TopicsTable({
     handleEdit: (topic: any) => void,
     handleDelete: (id: any) => void
 }) {
+    const { t } = useTranslation("common");
     const [order, setOrder] = useState<'asc' | 'desc'>('asc');
     const [orderBy, setOrderBy] = useState<string>('id');
 
@@ -100,7 +102,7 @@ export default function TopicsTable({
                                     }
                                 }}
                             >
-                                <b>Tên chủ đề</b>
+                                <b>{t("COMMON.TOPIC.TABLE.name")}</b>
                             </TableSortLabel>
                         </TableCell>
                         <TableCell align="center" onClick={() => handleRequestSort('note')}>
@@ -117,7 +119,7 @@ export default function TopicsTable({
                                     }
                                 }}
                             >
-                                <b>Ghi chú</b>
+                                <b>{t("COMMON.TOPIC.TABLE.note")}</b>
                             </TableSortLabel>
                         </TableCell>
                         <TableCell align="center" onClick={() => handleRequestSort('numberOfCourses')}>
@@ -134,10 +136,10 @@ export default function TopicsTable({
                                     }
                                 }}
                             >
-                                <b>Số khoá học</b>
+                                <b>{t("COMMON.TOPIC.TABLE.numberOfCourses")}</b>
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell align="center"><b>Hành động</b></TableCell>
+                        <TableCell align="center"><b>{t('COMMON.TABLE.COMMON.ACTION')}</b></TableCell>
                     </TableRow>
                 </TableHead>
 

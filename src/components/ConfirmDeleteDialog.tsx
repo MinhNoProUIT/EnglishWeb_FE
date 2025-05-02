@@ -1,11 +1,17 @@
 import { Dialog, DialogTitle, DialogActions, Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
-export default function ConfirmDeleteDialog({ object, open, onClose, onConfirm }: {
-    object: string,
+export default function ConfirmDeleteDialog({ 
+    open, 
+    onClose, 
+    onConfirm 
+}: {
     open: boolean,
     onClose: () => void,
     onConfirm: () => void
 }) {
+    const { t } = useTranslation("common");
+
     return (
         <Dialog open={open} onClose={onClose}
             sx={{
@@ -17,7 +23,9 @@ export default function ConfirmDeleteDialog({ object, open, onClose, onConfirm }
                 }
             }}
         >
-            <DialogTitle>Bạn có chắc chắn muốn xoá {object} này không?</DialogTitle>
+            <DialogTitle>
+                {t("COMMON.ALERT_DIALOG.CONFIRM_DELETE.CONTENT")}
+            </DialogTitle>
 
             <DialogActions sx={{
                 alignSelf: 'center',
@@ -30,7 +38,7 @@ export default function ConfirmDeleteDialog({ object, open, onClose, onConfirm }
                         textTransform: "none",
                     }}
                 >
-                    Không
+                {t("COMMON.ALERT_DIALOG.CONFIRM_DELETE.CANCEL")}
                 </Button>
                 <Button variant="contained" color="error" onClick={onConfirm}
                     sx={{
@@ -40,7 +48,7 @@ export default function ConfirmDeleteDialog({ object, open, onClose, onConfirm }
                         textTransform: "none",
                     }}
                 >
-                    Có
+                {t("COMMON.ALERT_DIALOG.CONFIRM_DELETE.DELETE")}
                 </Button>
             </DialogActions>
         </Dialog>

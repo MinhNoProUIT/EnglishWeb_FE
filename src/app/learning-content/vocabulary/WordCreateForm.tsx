@@ -13,6 +13,7 @@ import {
     FormControl,
 } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { getTypeBgColor, getTypeTextColor } from "./VocabularyTable";
 
 export default function WordCreateForm({
@@ -26,6 +27,7 @@ export default function WordCreateForm({
     onSubmit: (data: any) => void;
     initialData?: any;
 }) {
+    const { t } = useTranslation("common");
     const [form, setForm] = useState({ eng: "", vie: "", transcription: "", type: "", course: "", example: "", image: "", });
 
     useEffect(() => {
@@ -76,7 +78,9 @@ export default function WordCreateForm({
                 fontWeight: 'bold',
                 textAlign: 'center',
             }}>
-                {initialData ? "Cập nhật từ vựng" : "Thêm từ vựng"}
+                {initialData ?
+                    t("COMMON.VOCABULARY.FORM.TITLE_UPDATE")
+                    : t("COMMON.VOCABULARY.FORM.TITLE_CREATE")}
             </DialogTitle>
 
             <DialogContent>
@@ -92,9 +96,10 @@ export default function WordCreateForm({
                         flexDirection: 'column',
                     }}>
                         <Typography>
-                            Nghĩa tiếng Anh
+                            {t("COMMON.VOCABULARY.TABLE.eng")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập nghĩa tiếng Anh" value={form.eng}
+                        <TextField fullWidth value={form.eng}
+                            placeholder={t("COMMON.VOCABULARY.FORM.ENTER_ENG")}
                             onChange={(e) => setForm({ ...form, eng: e.target.value })} />
                     </Box>
 
@@ -103,9 +108,10 @@ export default function WordCreateForm({
                         flexDirection: 'column',
                     }}>
                         <Typography>
-                            Nghĩa tiếng Việt
+                            {t("COMMON.VOCABULARY.TABLE.vie")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập nghĩa tiếng Việt" value={form.vie}
+                        <TextField fullWidth value={form.vie}
+                            placeholder={t("COMMON.VOCABULARY.FORM.ENTER_VIE")}
                             onChange={(e) => setForm({ ...form, vie: e.target.value })} />
                     </Box>
 
@@ -114,9 +120,10 @@ export default function WordCreateForm({
                         flexDirection: 'column',
                     }}>
                         <Typography>
-                            Phiên âm
+                            {t("COMMON.VOCABULARY.TABLE.transcription")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập phiên âm" value={form.transcription}
+                        <TextField fullWidth value={form.transcription}
+                            placeholder={t("COMMON.VOCABULARY.FORM.ENTER_TRANSCRIPTION")}
                             onChange={(e) => setForm({ ...form, transcription: e.target.value })} />
                     </Box>
 
@@ -129,7 +136,7 @@ export default function WordCreateForm({
                             flexDirection: 'column',
                         }}>
                             <Typography>
-                                Loại từ
+                                {t("COMMON.VOCABULARY.TABLE.type")}
                             </Typography>
                             <Select
                                 value={form.type}
@@ -163,7 +170,7 @@ export default function WordCreateForm({
                                 }}
                             >
                                 <MenuItem value="" disabled>
-                                    Chọn loại từ     {/* placeholder */}
+                                    {t("COMMON.VOCABULARY.FORM.SELECT_TYPE")}    {/* placeholder */}
                                 </MenuItem>
                                 {["n", "v", "adj"].map((type) => (
                                     <MenuItem value={type}>
@@ -188,7 +195,7 @@ export default function WordCreateForm({
                             flexDirection: 'column',
                         }}>
                             <Typography>
-                                Khoá học
+                                {t("COMMON.VOCABULARY.TABLE.course")}
                             </Typography>
                             <Select
                                 value={form.course}
@@ -222,7 +229,7 @@ export default function WordCreateForm({
                                 }}
                             >
                                 <MenuItem value="" disabled >
-                                    Chọn khoá học     {/* placeholder */}
+                                    {t("COMMON.VOCABULARY.FORM.SELECT_COURSE")}    {/* placeholder */}
                                 </MenuItem>
                                 {["In court", "Sports", "Hang out with friends"].map((course) => (
                                     <MenuItem value={course}>
@@ -238,9 +245,10 @@ export default function WordCreateForm({
                         flexDirection: 'column',
                     }}>
                         <Typography>
-                            Ví dụ
+                            {t("COMMON.VOCABULARY.TABLE.example")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập ví dụ" value={form.example}
+                        <TextField fullWidth value={form.example}
+                            placeholder={t("COMMON.VOCABULARY.FORM.ENTER_EXAMPLE")}
                             onChange={(e) => setForm({ ...form, example: e.target.value })} />
                     </Box>
 
@@ -249,9 +257,10 @@ export default function WordCreateForm({
                         flexDirection: 'column',
                     }}>
                         <Typography>
-                            Hình ảnh
+                            {t("COMMON.VOCABULARY.TABLE.image")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập hình ảnh" value={form.image}
+                        <TextField fullWidth value={form.image}
+                            placeholder={t("COMMON.VOCABULARY.FORM.ENTER_IMAGE")}
                             onChange={(e) => setForm({ ...form, image: e.target.value })} />
                     </Box>
                 </Box>
@@ -259,6 +268,8 @@ export default function WordCreateForm({
 
             <DialogActions sx={{
                 alignSelf: 'center',
+                padding: '16px',
+                gap: '10px',
             }}>
                 <Button onClick={onClose}
                     sx={{
@@ -268,7 +279,7 @@ export default function WordCreateForm({
                         textTransform: "none",
                     }}
                 >
-                    Huỷ
+                    {t("COMMON.BUTTON.CANCEL")}
                 </Button>
                 <Button onClick={() => onSubmit(form)} variant="contained"
                     sx={{
@@ -279,7 +290,7 @@ export default function WordCreateForm({
                         textTransform: "none",
                     }}
                 >
-                    Lưu
+                    {t("COMMON.BUTTON.SAVE")}
                 </Button>
             </DialogActions>
         </Dialog>

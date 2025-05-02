@@ -166,7 +166,10 @@
             "WORKHISTORY": "Work History",
             "CREATETASKS": "Create tasks",
             "TOTAL_POST": "Total posts",
-            "COURSE": "Course"
+            "COURSE": "Course",
+            "LEARNING_CONTENT": "Learning content",
+            "TOPIC": "Topic",
+            "VOCABULARY": "Vocabulary"
         },
         "MODE": {
             "LIGHT": "Light",
@@ -783,7 +786,72 @@
           "NAME": "Name"
         },
         "TITLE": "List of Roles and Permissions",
-        "SEARCH": "Search by Role Name"
+        "SEARCH": "Search by Role Name",
+
+        "TOPIC": {
+          "TITLE": "List of topics",
+          "SEARCH_BY": "Search by ",
+          "TABLE": {
+            "name": "Topic name",
+            "note": "Note",
+            "numberOfCourses": "Number of courses"
+          },
+          "FORM": {
+            "TITLE_CREATE": "Create topic",
+            "TITLE_UPDATE": "Update topic",
+            "ENTER_TOPIC_NAME": "Enter topic name",
+            "ENTER_NOTES": "Enter notes"
+          },
+          "DELETE_OBJECT_NAME": "topic"
+        },
+
+        "COURSES": {
+          "TITLE": "List of courses",
+          "SEARCH_BY": "Search by ",
+          "TABLE": {
+            "title": "Course name",
+            "topic": "Topic",
+            "level": "Level",
+            "description": "Description",
+            "image": "Image"
+          },
+          "FORM": {
+            "TITLE_CREATE": "Create course",
+            "TITLE_UPDATE": "Update course",
+            "ENTER_COURSE_NAME": "Enter course name",
+            "SELECT_TOPIC": "Select topic",
+            "SELECT_LEVEL": "Select level",
+            "ENTER_DESCRIPTION": "Enter description",
+            "ENTER_IMAGE": "Enter image url"
+          },
+          "DELETE_OBJECT_NAME": "course"
+        },
+        
+        "VOCABULARY": {
+          "TITLE": "Vocabulary list",
+          "SEARCH_BY": "Search by ",
+          "TABLE": {
+            "eng": "English meaning",
+            "vie": "Vietnamese meaning",
+            "transcription": "Transcription",
+            "type": "Type",
+            "course": "Course",
+            "example": "Example",
+            "image": "Image"
+          },
+          "FORM": {
+            "TITLE_CREATE": "Create word",
+            "TITLE_UPDATE": "Update word",
+            "ENTER_ENG": "Enter English meaning",
+            "ENTER_VIE": "Enter Vietnamese meaning",
+            "ENTER_TRANSCRIPTION": "Enter transcription",
+            "SELECT_TYPE": "Select word type",
+            "SELECT_COURSE": "Select course",
+            "ENTER_EXAMPLE": "Enter example",
+            "ENTER_IMAGE": "Enter image url"
+          },
+          "DELETE_OBJECT_NAME": "word"
+        }
       }
     },
     "BUTTON": {

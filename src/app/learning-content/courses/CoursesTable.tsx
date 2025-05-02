@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { VisibilityOutlined, EditOutlined, DeleteOutline, } from "@mui/icons-material";
 import { ICourse } from "@/interfaces/course.interface";
+import { useTranslation } from "react-i18next";
 
 export const getLevelBgColor = (level: string) => {
   switch (level) {
@@ -47,6 +48,7 @@ export default function CoursesTable({
   handleEdit: (course: any) => void,
   handleDelete: (id: any) => void
 }) {
+  const { t } = useTranslation("common");
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const [orderBy, setOrderBy] = useState<string>('id');
 
@@ -124,7 +126,7 @@ export default function CoursesTable({
                   }
                 }}
               >
-                <b>Tên khoá học</b>
+                <b>{t("COMMON.COURSES.TABLE.title")}</b>
               </TableSortLabel>
             </TableCell>
             <TableCell align="center" onClick={() => handleRequestSort('topic')}>
@@ -141,7 +143,7 @@ export default function CoursesTable({
                   }
                 }}
               >
-                <b>Chủ đề</b>
+                <b>{t("COMMON.COURSES.TABLE.topic")}</b>
               </TableSortLabel>
             </TableCell>
             <TableCell align="center" onClick={() => handleRequestSort('level')}>
@@ -157,7 +159,7 @@ export default function CoursesTable({
                   }
                 }}
               >
-                <b>Độ khó</b>
+                <b>{t("COMMON.COURSES.TABLE.level")}</b>
               </TableSortLabel>
             </TableCell>
             <TableCell align="center" onClick={() => handleRequestSort('description')}>
@@ -173,7 +175,7 @@ export default function CoursesTable({
                   }
                 }}
               >
-                <b>Mô tả</b>
+                <b>{t("COMMON.COURSES.TABLE.description")}</b>
               </TableSortLabel>
             </TableCell>
             <TableCell align="center" onClick={() => handleRequestSort('image')}>
@@ -190,10 +192,12 @@ export default function CoursesTable({
                   }
                 }}
               >
-                <b>Hình ảnh</b>
+                <b>{t("COMMON.COURSES.TABLE.image")}</b>
               </TableSortLabel>
             </TableCell>
-            <TableCell align="center"><b>Hành động</b></TableCell>
+            <TableCell align="center">
+              <b>{t("COMMON.TABLE.COMMON.ACTION")}</b>
+            </TableCell>
           </TableRow>
         </TableHead>
 
