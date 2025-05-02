@@ -86,7 +86,7 @@ const initialCourses: ICourse[] = [
 ];
 
 export default function CoursesPage() {
-    const { t } = useTranslation("common")
+    const { t } = useTranslation("common");
     const [courses, setCourses] = useState(initialCourses);
     const [searchKey, setSearchKey] = useState("");
     const [searchBy, setSearchBy] = useState("title");
@@ -126,7 +126,7 @@ export default function CoursesPage() {
                     marginX: "10px",
                 }}
             >
-                Danh sách khóa học
+                {t("COMMON.COURSES.TITLE")}
             </Typography>
             <Box
                 sx={{
@@ -145,7 +145,7 @@ export default function CoursesPage() {
                     <TextField
                         id="location-search"
                         type="search"
-                        placeholder={t("COMMON.ERROR_REPORT.SEARCH")}
+                        placeholder={t("COMMON.TOPIC.SEARCH_BY") + t("COMMON.COURSES.TABLE." + searchBy)}
                         variant="outlined"
                         required
                         value={searchKey}
@@ -247,19 +247,19 @@ export default function CoursesPage() {
                             }}
                         >
                             <MenuItem value="title">
-                                Tên khoá học
+                                {t("COMMON.COURSES.TABLE.title")}
                             </MenuItem>
                             <MenuItem value="topic">
-                                Chủ đề
+                            {t("COMMON.COURSES.TABLE.topic")}
                             </MenuItem>
                             <MenuItem value="level">
-                                Độ khó
+                            {t("COMMON.COURSES.TABLE.level")}
                             </MenuItem>
                             <MenuItem value="description">
-                                Mô tả
+                            {t("COMMON.COURSES.TABLE.description")}
                             </MenuItem>
                             <MenuItem value="image">
-                                Hình ảnh
+                            {t("COMMON.COURSES.TABLE.image")}
                             </MenuItem>
                         </Select>
                     </FormControl>
@@ -278,8 +278,8 @@ export default function CoursesPage() {
                         backgroundColor: "#03d794",
                         textTransform: "none",
                     }}
-                >
-                    Create
+                >                    
+                    {t("COMMON.BUTTON.CREATE")}
                 </Button>
             </Box>
 
@@ -307,7 +307,6 @@ export default function CoursesPage() {
             />
 
             <ConfirmDeleteDialog
-                object="khoá học"
                 open={isDeleteConfirmOpen}
                 onClose={() => setIsDeleteConfirmOpen(false)}
                 onConfirm={() => {

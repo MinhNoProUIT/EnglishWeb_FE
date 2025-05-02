@@ -35,7 +35,7 @@ const initialTopics: ITopic[] = [
 ];
 
 export default function TopicsPage() {
-    const { t } = useTranslation("common")
+    const { t } = useTranslation("common");
     const [topics, setTopics] = useState(initialTopics);
     const [searchKey, setSearchKey] = useState("");
     const [searchBy, setSearchBy] = useState("name");
@@ -81,8 +81,9 @@ export default function TopicsPage() {
                     marginX: "10px",
                 }}
             >
-                Danh sách chủ đề
+                {t("COMMON.TOPIC.TITLE")}
             </Typography>
+
             <Box
                 sx={{
                     display: 'flex',
@@ -100,7 +101,7 @@ export default function TopicsPage() {
                     <TextField
                         id="location-search"
                         type="search"
-                        placeholder={t("COMMON.ERROR_REPORT.SEARCH")}
+                        placeholder={t("COMMON.TOPIC.SEARCH_BY") + t("COMMON.TOPIC.TABLE." + searchBy)}
                         variant="outlined"
                         required
                         value={searchKey}
@@ -202,13 +203,13 @@ export default function TopicsPage() {
                             }}
                         >
                             <MenuItem value="name">
-                                Tên chủ đề
+                                {t("COMMON.TOPIC.TABLE.name")}
                             </MenuItem>
                             <MenuItem value="note">
-                                Mô tả
+                                {t("COMMON.TOPIC.TABLE.note")}
                             </MenuItem>
                             <MenuItem value="numberOfCourses">
-                                Số khoá học
+                                {t("COMMON.TOPIC.TABLE.numberOfCourses")}
                             </MenuItem>
                         </Select>
                     </FormControl>
@@ -231,7 +232,7 @@ export default function TopicsPage() {
                         textTransform: "none",
                     }}
                 >
-                    Create
+                    {t("COMMON.BUTTON.CREATE")}
                 </Button>
             </Box>
 
@@ -258,7 +259,6 @@ export default function TopicsPage() {
             />
 
             <ConfirmDeleteDialog
-                object="chủ đề"
                 open={isDeleteConfirmOpen}
                 onClose={() => setIsDeleteConfirmOpen(false)}
                 onConfirm={() => {

@@ -167,7 +167,10 @@
       "CREATETASKS": "Tạo công tác",
       "TOTAL_POST": "Tổng bài đăng",
       "COURSE": "Khóa học",
-      "LEARNING": "Học tập"
+      "LEARNING": "Học tập",
+      "LEARNING_CONTENT": "Nội dung học tập",
+      "TOPIC": "Chủ đề",
+      "VOCABULARY": "Từ vựng"
     },
     "MODE": {
       "LIGHT": "Sáng",
@@ -219,7 +222,7 @@
       "FROM_TO": "{{from}} - {{to}} của {{totalRecords}}",
       "ROWS": "Hàng"
     },
-    "DIALOG": {
+    "ALERT_DIALOG": {
       "CONFIRM_DELETE": {
         "TITLE": "Xác nhận",
         "CONTENT": "Bạn có chắc chắn muốn xóa không?",
@@ -849,6 +852,71 @@
       "LEARNING_TOPIC": "Chủ đề",
       "LEARNING_TIME": "Thời gian học",
       "LEARNING_LIST": "Danh sách học tập"
+    },
+
+    "TOPIC": {
+      "TITLE": "Danh sách chủ đề",
+      "SEARCH_BY": "Tìm kiếm theo ",
+      "TABLE": {
+        "name": "Tên chủ đề",
+        "note": "Ghi chú",
+        "numberOfCourses": "Số khoá học"
+      },
+      "FORM": {
+        "TITLE_CREATE": "Thêm chủ đề",
+        "TITLE_UPDATE": "Cập nhật chủ đề",
+        "ENTER_TOPIC_NAME": "Nhập tên chủ đề",
+        "ENTER_NOTES": "Nhập ghi chú"
+      },
+      "DELETE_OBJECT_NAME": "chủ đề này không"
+    },
+    
+    "COURSES": {
+      "TITLE": "Danh sách khóa học",
+      "SEARCH_BY": "Tìm kiếm theo ",
+      "TABLE": {
+        "title": "Tên khóa học",
+        "topic": "Chủ đề",
+        "level": "Độ khó",
+        "description": "Mô tả",
+        "image": "Hình ảnh"
+      },
+      "FORM": {
+        "TITLE_CREATE": "Thêm khóa học",
+        "TITLE_UPDATE": "Cập nhật khóa học",
+        "ENTER_COURSE_NAME": "Nhập tên khóa học",
+        "SELECT_TOPIC": "Chọn chủ đề",
+        "SELECT_LEVEL": "Chọn độ khó",
+        "ENTER_DESCRIPTION": "Nhập mô tả",
+        "ENTER_IMAGE": "Nhập hình ảnh"
+      },
+      "DELETE_OBJECT_NAME": "khóa học này không"
+    },
+
+    "VOCABULARY": {
+      "TITLE": "Danh sách từ vựng",
+      "SEARCH_BY": "Tìm kiếm theo ",
+      "TABLE": {
+        "eng": "Nghĩa tiếng Anh",
+        "vie": "Nghĩa tiếng Việt",
+        "transcription": "Phiên âm",
+        "type": "Loại từ",
+        "course": "Khóa học",
+        "example": "Ví dụ",
+        "image": "Hình ảnh"
+      },
+      "FORM": {
+        "TITLE_CREATE": "Thêm từ vựng",
+        "TITLE_UPDATE": "Cập nhật từ vựng",
+        "ENTER_ENG": "Nhập nghĩa tiếng Anh",
+        "ENTER_VIE": "Nhập nghĩa tiếng Việt",
+        "ENTER_TRANSCRIPTION": "Nhập phiên âm",
+        "SELECT_TYPE": "Chọn loại từ",
+        "SELECT_COURSE": "Chọn khóa học",
+        "ENTER_EXAMPLE": "Nhập ví dụ",
+        "ENTER_IMAGE": "Nhập hình ảnh"
+      },
+      "DELETE_OBJECT_NAME": "word"
     }
   }
 }

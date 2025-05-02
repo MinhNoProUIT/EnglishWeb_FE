@@ -9,6 +9,7 @@ import {
     Typography,
 } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function TopicCreateForm({
     open,
@@ -21,6 +22,7 @@ export default function TopicCreateForm({
     onSubmit: (data: any) => void;
     initialData?: any;
 }) {
+    const { t } = useTranslation("common");
     const [form, setForm] = useState({ name: "", note: "" });
 
     useEffect(() => {
@@ -67,7 +69,9 @@ export default function TopicCreateForm({
                 fontWeight: 'bold',
                 textAlign: 'center',
             }}>
-                {initialData ? "Cập nhật chủ đề" : "Thêm chủ đề"}
+                {initialData ?
+                    t("COMMON.TOPIC.FORM.TITLE_UPDATE")
+                    : t("COMMON.TOPIC.FORM.TITLE_CREATE")}
             </DialogTitle>
 
             <DialogContent>
@@ -84,9 +88,10 @@ export default function TopicCreateForm({
                         gap: '3px',
                     }}>
                         <Typography>
-                            Tên chủ đề
+                            {t("COMMON.TOPIC.TABLE.name")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập tên chủ đề" value={form.name}
+                        <TextField fullWidth value={form.name}
+                            placeholder={t("COMMON.TOPIC.FORM.ENTER_TOPIC_NAME")}
                             onChange={(e) => setForm({ ...form, name: e.target.value })} />
                     </Box>
 
@@ -96,9 +101,10 @@ export default function TopicCreateForm({
                         gap: '3px',
                     }}>
                         <Typography>
-                            Ghi chú
+                            {t("COMMON.TOPIC.TABLE.note")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập ghi chú" value={form.note}
+                        <TextField fullWidth value={form.note}
+                            placeholder={t("COMMON.TOPIC.FORM.ENTER_NOTES")}
                             onChange={(e) => setForm({ ...form, note: e.target.value })} />
                     </Box>
                 </Box>
@@ -106,7 +112,8 @@ export default function TopicCreateForm({
 
             <DialogActions sx={{
                 alignSelf: 'center',
-                padding: '10px',
+                padding: '16px',
+                gap: '10px',
             }}>
                 <Button onClick={onClose}
                     sx={{
@@ -116,7 +123,7 @@ export default function TopicCreateForm({
                         textTransform: "none",
                     }}
                 >
-                    Huỷ
+                    {t("COMMON.BUTTON.CANCEL")}
                 </Button>
                 <Button onClick={() => onSubmit(form)} variant="contained"
                     sx={{
@@ -127,7 +134,7 @@ export default function TopicCreateForm({
                         textTransform: "none",
                     }}
                 >
-                    Lưu
+                    {t("COMMON.BUTTON.SAVE")}
                 </Button>
             </DialogActions>
         </Dialog>

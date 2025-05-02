@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { VisibilityOutlined, EditOutlined, DeleteOutline, } from "@mui/icons-material";
 import { IWord } from "@/interfaces/word.interface";
+import { useTranslation } from "react-i18next";
 
 export const getTypeBgColor = (type: string) => {
     switch (type) {
@@ -48,6 +49,7 @@ export default function VocabularyTable({
     handleEdit: (course: any) => void,
     handleDelete: (id: any) => void
 }) {
+    const { t } = useTranslation("common");
     const [order, setOrder] = useState<'asc' | 'desc'>('asc');
     const [orderBy, setOrderBy] = useState<string>('id');
 
@@ -125,7 +127,7 @@ export default function VocabularyTable({
                                     }
                                 }}
                             >
-                                <b>Nghĩa tiếng Anh</b>
+                                <b>{t("COMMON.VOCABULARY.TABLE.eng")}</b>
                             </TableSortLabel>
                         </TableCell>
                         <TableCell align="center" onClick={() => handleRequestSort('vie')}>
@@ -142,7 +144,7 @@ export default function VocabularyTable({
                                     }
                                 }}
                             >
-                                <b>Nghĩa tiếng Việt</b>
+                                <b>{t("COMMON.VOCABULARY.TABLE.vie")}</b>
                             </TableSortLabel>
                         </TableCell>
                         <TableCell align="center" onClick={() => handleRequestSort('transcription')}>
@@ -159,7 +161,7 @@ export default function VocabularyTable({
                                     }
                                 }}
                             >
-                                <b>Phiên âm</b>
+                                <b>{t("COMMON.VOCABULARY.TABLE.transcription")}</b>
                             </TableSortLabel>
                         </TableCell>
                         <TableCell align="center" onClick={() => handleRequestSort('type')}>
@@ -176,7 +178,7 @@ export default function VocabularyTable({
                                     }
                                 }}
                             >
-                                <b>Loại từ</b>
+                                <b>{t("COMMON.VOCABULARY.TABLE.type")}</b>
                             </TableSortLabel>
                         </TableCell>
                         <TableCell align="center" onClick={() => handleRequestSort('course')}>
@@ -193,7 +195,7 @@ export default function VocabularyTable({
                                     }
                                 }}
                             >
-                                <b>Thuộc khóa học</b>
+                                <b>{t("COMMON.VOCABULARY.TABLE.course")}</b>
                             </TableSortLabel>
                         </TableCell>
                         <TableCell align="center" onClick={() => handleRequestSort('example')}>
@@ -210,7 +212,7 @@ export default function VocabularyTable({
                                     }
                                 }}
                             >
-                                <b>Ví dụ</b>
+                                <b>{t("COMMON.VOCABULARY.TABLE.example")}</b>
                             </TableSortLabel>
                         </TableCell>
                         <TableCell align="center" onClick={() => handleRequestSort('image')}>
@@ -227,10 +229,12 @@ export default function VocabularyTable({
                                     }
                                 }}
                             >
-                                <b>Hình ảnh</b>
+                                <b>{t("COMMON.VOCABULARY.TABLE.image")}</b>
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell align="center"><b>Hành động</b></TableCell>
+                        <TableCell align="center">
+                            <b>{t("COMMON.TABLE.COMMON.ACTION")}</b>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

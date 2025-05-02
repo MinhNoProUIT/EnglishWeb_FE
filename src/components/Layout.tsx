@@ -137,12 +137,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {menuLeft["LearningContent"].IsAllowView && (
           <SidebarItem
             icon={<Book />}
-            text="Learning content"
+            text={t("COMMON.SIDEBAR.LEARNING_CONTENT")}
           >
             {menuLeft["Topics"].IsAllowView && (
               <SidebarItem
                 icon={<Tags />}
-                text="Chủ đề"
+                text={t("COMMON.SIDEBAR.TOPIC")}
                 route="/learning-content/topics"
                 active={pathname === "/learning-content/topics"}
               />
@@ -150,7 +150,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             {menuLeft["Courses"].IsAllowView && (
               <SidebarItem
                 icon={<NotebookPen />}
-                text="Khoá học"
+                text={t("COMMON.SIDEBAR.COURSE")}
                 route="/learning-content/courses"
                 active={pathname === "/learning-content/courses"}
               />
@@ -158,7 +158,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             {menuLeft["Vocabulary"].IsAllowView && (
               <SidebarItem
                 icon={<BookOpen />}
-                text="Từ vựng"
+                text={t("COMMON.SIDEBAR.VOCABULARY")}
                 route="/learning-content/vocabulary"
                 active={pathname === "/learning-content/vocabulary"}
               />

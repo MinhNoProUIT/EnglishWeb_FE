@@ -12,6 +12,7 @@ import {
     FormControl,
 } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { getLevelBgColor, getLevelTextColor } from "./CoursesTable";
 
 export default function CourseCreateForm({
@@ -25,6 +26,7 @@ export default function CourseCreateForm({
     onSubmit: (data: any) => void;
     initialData?: any;
 }) {
+    const { t } = useTranslation("common");
     const [form, setForm] = useState({ title: "", topic: "", level: "", description: "", image: "" });
 
     useEffect(() => {
@@ -71,7 +73,9 @@ export default function CourseCreateForm({
                 fontWeight: 'bold',
                 textAlign: 'center',
             }}>
-                {initialData ? "Cập nhật khoá học" : "Thêm khoá học"}
+                {initialData ?
+                    t("COMMON.COURSES.FORM.TITLE_UPDATE")
+                    : t("COMMON.COURSES.FORM.TITLE_CREATE")}
             </DialogTitle>
 
             <DialogContent>
@@ -87,9 +91,10 @@ export default function CourseCreateForm({
                         flexDirection: 'column',
                     }}>
                         <Typography>
-                            Tên khoá học
+                            {t("COMMON.COURSES.TABLE.title")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập tên khoá học" value={form.title}
+                        <TextField fullWidth value={form.title}
+                            placeholder={t("COMMON.COURSES.FORM.ENTER_COURSE_NAME")}
                             onChange={(e) => setForm({ ...form, title: e.target.value })} />
                     </Box>
 
@@ -102,7 +107,7 @@ export default function CourseCreateForm({
                             flexDirection: 'column',
                         }}>
                             <Typography>
-                                Chủ đề
+                                {t("COMMON.COURSES.TABLE.topic")}
                             </Typography>
                             <Select
                                 value={form.topic}
@@ -136,7 +141,7 @@ export default function CourseCreateForm({
                                 }}
                             >
                                 <MenuItem value="" disabled>
-                                    Chọn chủ đề     {/* placeholder */}
+                                    {t("COMMON.COURSES.FORM.SELECT_TOPIC")}     {/* placeholder */}
                                 </MenuItem>
                                 {["People-lifestyle", "Business", "Education", "Economy"].map((item) => (
                                     <MenuItem value={item}>
@@ -151,7 +156,7 @@ export default function CourseCreateForm({
                             flexDirection: 'column',
                         }}>
                             <Typography>
-                                Độ khó
+                                {t("COMMON.COURSES.TABLE.level")}
                             </Typography>
                             <Select
                                 value={form.level}
@@ -185,7 +190,7 @@ export default function CourseCreateForm({
                                 }}
                             >
                                 <MenuItem value="" disabled>
-                                    Chọn độ khó     {/* placeholder */}
+                                    {t("COMMON.COURSES.FORM.SELECT_LEVEL")}     {/* placeholder */}
                                 </MenuItem>
                                 {["A1 - A2", "B1 - B2", "C1 - C2"].map((item) => (
                                     <MenuItem value={item}
@@ -215,9 +220,10 @@ export default function CourseCreateForm({
                         flexDirection: 'column',
                     }}>
                         <Typography>
-                            Mô tả
+                            {t("COMMON.COURSES.TABLE.description")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập mô tả" value={form.description}
+                        <TextField fullWidth value={form.description}
+                            placeholder={t("COMMON.COURSES.FORM.ENTER_DESCRIPTION")}
                             onChange={(e) => setForm({ ...form, description: e.target.value })} />
                     </Box>
 
@@ -226,9 +232,10 @@ export default function CourseCreateForm({
                         flexDirection: 'column',
                     }}>
                         <Typography>
-                            Hình ảnh
+                            {t("COMMON.COURSES.TABLE.image")}
                         </Typography>
-                        <TextField fullWidth placeholder="Nhập hình ảnh" value={form.image}
+                        <TextField fullWidth value={form.image}
+                            placeholder={t("COMMON.COURSES.FORM.ENTER_IMAGE")}
                             onChange={(e) => setForm({ ...form, image: e.target.value })} />
                     </Box>
                 </Box>
@@ -236,6 +243,8 @@ export default function CourseCreateForm({
 
             <DialogActions sx={{
                 alignSelf: 'center',
+                padding: '16px',
+                gap: '10px',
             }}>
                 <Button onClick={onClose}
                     sx={{
@@ -245,7 +254,7 @@ export default function CourseCreateForm({
                         textTransform: "none",
                     }}
                 >
-                    Huỷ
+                    {t("COMMON.BUTTON.CANCEL")}
                 </Button>
                 <Button onClick={() => onSubmit(form)} variant="contained"
                     sx={{
@@ -256,7 +265,7 @@ export default function CourseCreateForm({
                         textTransform: "none",
                     }}
                 >
-                    Lưu
+                    {t("COMMON.BUTTON.SAVE")}
                 </Button>
             </DialogActions>
         </Dialog>
