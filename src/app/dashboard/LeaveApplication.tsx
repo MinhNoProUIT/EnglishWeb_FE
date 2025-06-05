@@ -30,27 +30,27 @@ const mockTimeOffData: ITimeOffS[] = [
     EndDate: "2025-05-05",
     IsAccepted: false,
     Reason: "Cá nhân",
-    Content: "Xin nghỉ phép đi du lịch với gia đình.",
+    Content: "Từ vựng apple có nghĩa bị lỗi.",
     CreatedDate: "2025-04-01",
     FullName: "Nguyễn Văn A",
-    Roles: ["Nhân viên"],
+    Roles: ["Người dùng"],
     EmployeeId: "EMP001",
     AvatarPath: "",
-    Department: "Phòng Kỹ thuật",
+    Department: "Vegetables",
   },
   {
     Id: 2,
-    StartDate: "2025-06-10",
-    EndDate: "2025-06-12",
+    StartDate: "2025-05-01",
+    EndDate: "2025-05-05",
     IsAccepted: false,
-    Reason: "Khám bệnh",
-    Content: "Nghỉ đi khám tổng quát tại bệnh viện.",
-    CreatedDate: "2025-04-03",
-    FullName: "Trần Thị B",
-    Roles: ["QA Tester"],
-    EmployeeId: "EMP002",
+    Reason: "Cá nhân",
+    Content: "Từ vựng apple có nghĩa bị lỗi.",
+    CreatedDate: "2025-04-01",
+    FullName: "Nguyễn Văn A",
+    Roles: ["Người dùng"],
+    EmployeeId: "EMP001",
     AvatarPath: "",
-    Department: "Phòng Kiểm thử",
+    Department: "Vegetables",
   },
 ];
 
@@ -164,7 +164,7 @@ export default function LeaveRequestCarousel() {
             color: "var(--text-color)",
           }}
         >
-          {t("COMMON.DASHBOARD.LEAVE_REQUESTS")}
+          {t("Báo cáo lỗi")}
         </Typography>
         <Box
           sx={{

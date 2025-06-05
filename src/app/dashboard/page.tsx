@@ -64,23 +64,13 @@ const AdminPage = () => {
       >
         <Box
           sx={{
-            width: "calc(100% / 3 * 2 + 24px)",
+            width: "calc(100%)",
             boxShadow: "var(--box-shadow-paper)",
             borderRadius: "15px",
             overflow: "hidden",
           }}
         >
           <EmployeeCountChart />
-        </Box>
-        <Box
-          sx={{
-            width: "calc(100% / 3)",
-            boxShadow: "var(--box-shadow-paper)",
-            borderRadius: "15px",
-            overflow: "hidden",
-          }}
-        >
-          <AgeDistributionChart />
         </Box>
       </Box>
 

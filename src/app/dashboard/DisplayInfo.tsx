@@ -5,9 +5,7 @@ import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/material";
 import { TrendingDown } from "lucide-react";
 import Loading from "@/components/Loading";
-// import { useGetEmployeeStatsByMonthAndYearQuery } from '@/services/EmploymentContractService'
-// import { useGetIncomeInMonthQuery } from '@/services/SalaryService'
-// import { useGetTimeOffStatisticsQuery } from '@/services/TimeOffService'
+import { useGetQuarterStatsQuery } from "@/services/UserService";
 
 function DisplayInfo() {
   const { t } = useTranslation("common");
@@ -26,6 +24,14 @@ function DisplayInfo() {
     monthSalary = monthSalary - 1;
   }
 
+  const {
+    data: userResponse,
+    isLoading: isUsersLoading,
+    refetch,
+  } = useGetQuarterStatsQuery();
+
+  console.log("📊 userResponse:", userResponse);
+
   // const { data: response, isLoading: isLoading1 } = useGetEmployeeStatsByMonthAndYearQuery({
   //     Month: month,
   //     Year: year
@@ -43,15 +49,19 @@ function DisplayInfo() {
   const isLoading2 = false;
   const isLoading3 = false;
 
-  const totalEmployee = 5000;
-  const employeePercent = 10;
+  const totalEmployee = userResponse?.currentQuarterCount || 0;
+  const employeePercent = userResponse?.changePercent || 0;
+
+  console.log("📊 totalEmployee:", totalEmployee);
+  console.log("📊 employeePercent:", employeePercent);
+
   const timeOff = 10;
   const timeOffPercent = 10;
   const totalEmployeeLayoff = 10;
   const layoffPercent = 10;
   const newEmployees = 10;
   const newEmployeePercent = 10;
-  const laborCosts = 10;
+  const laborCosts = 10000000;
   const laborCostsPercent = 10;
   const promotions = 12;
   const promotionPercent = 24;
@@ -278,7 +288,7 @@ function DisplayInfo() {
                   fontSize: "16px",
                 }}
               >
-                {t("COMMON.DASHBOARD.TOTAL_NEW_EMPLOYEES")}
+                {t("Tổng số báo cáo lỗi")}
               </Typography>
               <Typography
                 sx={{
@@ -330,7 +340,7 @@ function DisplayInfo() {
                 fontSize: "16px",
               }}
             >
-              {t("COMMON.DASHBOARD.UP_FROM_LAST_MONTH")}
+              {t("COMMON.DASHBOARD.DOWN_FROM_LAST_MONTH")}
             </Typography>
           </Box>
         </Paper>
@@ -450,7 +460,7 @@ function DisplayInfo() {
                   fontSize: "16px",
                 }}
               >
-                {t("COMMON.DASHBOARD.LABOR_COSTS")}
+                Tổng tiền thu vào
               </Typography>
               <Typography
                 sx={{
