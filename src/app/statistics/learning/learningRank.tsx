@@ -16,34 +16,34 @@ interface learningCount {
 
 const mockLearningCounts: learningCount[] = [
   {
-    id: 101,
+    id: 1011155,
     name: "Nguyễn Thị Mai",
     avt: "", // Example avatar path
-    exerciseCount: 85, // Number of exercises completed
+    exerciseCount: 12, // Number of exercises completed
   },
   {
-    id: 102,
+    id: 1011156,
     name: "Trần Văn Khang",
     avt: "", // Can be an empty string if no avatar
-    exerciseCount: 120,
+    exerciseCount: 16,
   },
   {
-    id: 103,
+    id: 1011156,
     name: "Lê Anh Tú",
     avt: "",
-    exerciseCount: 78,
+    exerciseCount: 10,
   },
   {
-    id: 104,
+    id: 1011157,
     name: "Phạm Thuỳ Linh",
     avt: "", // Example remote URL
-    exerciseCount: 95,
+    exerciseCount: 10,
   },
   {
-    id: 105,
+    id: 1011158,
     name: "Hoàng Minh Đức",
     avt: "",
-    exerciseCount: 60,
+    exerciseCount: 15,
   },
 ];
 

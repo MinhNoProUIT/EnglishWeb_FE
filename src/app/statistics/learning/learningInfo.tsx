@@ -69,7 +69,7 @@ export default function LearningInfo() {
                   fontWeight: "bold",
                 }}
               >
-                Nguyễn Văn A
+                Trần Văn Khang
               </Typography>
             </Box>
             <Box
@@ -146,7 +146,7 @@ export default function LearningInfo() {
                   fontWeight: "bold",
                 }}
               >
-                Lê Thị B
+                Đỗ Văn Phong
               </Typography>
             </Box>
             <Box

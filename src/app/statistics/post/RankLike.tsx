@@ -6,61 +6,66 @@ import Image from "next/image";
 
 const mockPosts: IPostListItem[] = [
   {
-    id: 1,
+    id: 10111606,
     title: "Button on home page is unresponsive",
-    createdBy: "Nguyễn Văn A",
+    createdBy: "Trần Minh",
     createdById: "U001",
-    createdByAvatar: "",
+    createdByAvatar:
+      "https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/11/tai-hinh-nen-dep-mien-phi.jpg",
     createdDate: new Date(),
-    totalPosts: 5,
+    totalPosts: 8,
     likesCount: 12,
     sharesCount: 4,
     isReported: true,
   },
   {
-    id: 2,
+    id: 10111607,
     title: "Image not loading on profile page",
-    createdBy: "Trần Thị B",
+    createdBy: "Cao Dương Lâm",
     createdById: "U002",
-    createdByAvatar: "",
+    createdByAvatar:
+      "https://r2.nucuoimekong.com/wp-content/uploads/buc-anh-dep-can-bang-sang-tot-1.jpg",
     createdDate: new Date("2024-12-10T14:48:00"),
-    totalPosts: 2,
+    totalPosts: 6,
     likesCount: 20,
     sharesCount: 6,
     isReported: true,
   },
   {
-    id: 3,
+    id: 10111608,
     title: "Crash when clicking settings",
-    createdBy: "Lê Văn C",
+    createdBy: "Bùi Thị Phương Huyền",
     createdById: "U003",
-    createdByAvatar: "",
+    createdByAvatar:
+      "https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg",
     createdDate: new Date("2024-12-01T09:20:00"),
-    totalPosts: 7,
+    totalPosts: 5,
     likesCount: 35,
     sharesCount: 12,
     isReported: true,
   },
   {
-    id: 4,
+    id: 10111601,
     title: "Login fails with correct credentials",
-    createdBy: "Phạm Duy K",
+    createdBy: "Đỗ Văn Phong",
     createdById: "U004",
-    createdByAvatar: "",
+    createdByAvatar:
+      "https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/08/anh-nguoi-mau-25.jpg",
     createdDate: new Date("2024-11-25T11:10:00"),
-    totalPosts: 4,
+    totalPosts: 7,
     likesCount: 9,
     sharesCount: 3,
     isReported: false,
   },
   {
-    id: 5,
+    id: 10111605,
     title: "Cannot upload avatar",
-    createdBy: "Đinh Thị D",
+    createdBy: "Lê Xuân Nam",
     createdById: "U005",
-    createdByAvatar: "",
+    createdByAvatar:
+      "https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/08/anh-nguoi-mau-25.jpg",
     createdDate: new Date("2024-11-20T10:30:00"),
-    totalPosts: 6,
+    totalPosts: 4,
     likesCount: 25,
     sharesCount: 5,
     isReported: true,
@@ -70,7 +75,8 @@ const mockPosts: IPostListItem[] = [
     title: "Page freezes when scrolling",
     createdBy: "Lương Văn E",
     createdById: "U006",
-    createdByAvatar: "",
+    createdByAvatar:
+      "https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/08/anh-nguoi-mau-25.jpg",
     createdDate: new Date("2024-11-18T08:45:00"),
     totalPosts: 3,
     likesCount: 17,
@@ -661,8 +667,8 @@ function RankLike() {
             </Box>
           </Box>
         </Box>
-      </Paper >
-    </Box >
+      </Paper>
+    </Box>
   );
 }
 

@@ -48,7 +48,7 @@ export default function TopicChart() {
         name: "Direct",
         type: "bar",
         barWidth: "60%",
-        data: [10, 52, 200, 334, 390, 330, 1000],
+        data: [10, 12, 11, 5, 6, 15, 22],
       },
     ],
   };

@@ -104,8 +104,6 @@ const AdminPage = () => {
           <LeaveApplication />
         </Box>
       </Box>
-
-      <ContractExpPage />
     </Box>
   );
 };

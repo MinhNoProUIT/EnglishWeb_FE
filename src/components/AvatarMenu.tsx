@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 const AvatarMenu = () => {
   // 🔧 Tạm hardcode dữ liệu
   const avatarPath = "/avatar-default.png"; // Đổi thành đường dẫn ảnh phù hợp
-  const fullName = "Nguyễn Văn A";
+  const fullName = "Trần Văn Minh";
   const roles = ["Admin", "Manager"];
 
   return (

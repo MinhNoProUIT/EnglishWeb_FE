@@ -15,8 +15,8 @@ import { useTranslation } from "react-i18next";
 export default function ChartSalary() {
   const { t } = useTranslation("common");
   const { theme } = useTheme();
-  const currentYear = 2024;
-  const [selectedYear, setSelectedYear] = useState(2024);
+  const currentYear = 2025;
+  const [selectedYear, setSelectedYear] = useState(2025);
 
   const handleYearChange = (event: SelectChangeEvent<number>) => {
     setSelectedYear(event.target.value as number);
@@ -24,8 +24,8 @@ export default function ChartSalary() {
 
   // 🟢 Dữ liệu mẫu thay cho API
   const response = {
-    yearList: [12, 14, 13, 16, 15, 18, 17, 19, 18, 20, 21, 22],
-    bYearList: [10, 11, 10, 13, 14, 15, 14, 16, 15, 16, 17, 18],
+    yearList: [12, 14, 13, 16, 15, 15, 0, 0, 0, 0, 0, 0],
+    bYearList: [10, 11, 10, 13, 14, 16, 14, 16, 15, 16, 17, 18],
   };
 
   const percent = 13.5;

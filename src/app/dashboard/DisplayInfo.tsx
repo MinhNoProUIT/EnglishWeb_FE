@@ -55,16 +55,16 @@ function DisplayInfo() {
   console.log("📊 totalEmployee:", totalEmployee);
   console.log("📊 employeePercent:", employeePercent);
 
-  const timeOff = 10;
-  const timeOffPercent = 10;
-  const totalEmployeeLayoff = 10;
-  const layoffPercent = 10;
-  const newEmployees = 10;
-  const newEmployeePercent = 10;
-  const laborCosts = 10000000;
-  const laborCostsPercent = 10;
-  const promotions = 12;
-  const promotionPercent = 24;
+  const timeOff = 15;
+  const timeOffPercent = -25;
+  const totalEmployeeLayoff = 13;
+  const layoffPercent = 0;
+  const newEmployees = 3;
+  const newEmployeePercent = 50;
+  const laborCosts = 150000;
+  const laborCostsPercent = 25;
+  const promotions = 0;
+  const promotionPercent = -100;
 
   if (isLoading1 || isLoading2 || isLoading3) {
     return <Loading />;

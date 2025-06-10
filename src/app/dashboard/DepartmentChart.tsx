@@ -13,8 +13,8 @@ interface IDepartmentGetAllDashboard {
 
 // ✅ Dữ liệu mẫu
 const mockData: IDepartmentGetAllDashboard[] = [
-  { Department: "Hoàn thành", Count: 25 },
-  { Department: "Chưa hoàn thành", Count: 75 },
+  { Department: "Hoàn thành", Count: 9 },
+  { Department: "Chưa hoàn thành", Count: 91 },
 ];
 
 const DepartmentChart = () => {
