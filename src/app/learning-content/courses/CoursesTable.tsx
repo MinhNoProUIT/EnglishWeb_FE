@@ -12,9 +12,14 @@ import {
   TableRow,
   TableSortLabel,
 } from "@mui/material";
-import { VisibilityOutlined, EditOutlined, DeleteOutline, } from "@mui/icons-material";
+import {
+  VisibilityOutlined,
+  EditOutlined,
+  DeleteOutline,
+} from "@mui/icons-material";
 import { ICourse } from "@/interfaces/course.interface";
 import { useTranslation } from "react-i18next";
+import { IGetAllCourses } from "@/models/Course";
 
 export const getLevelBgColor = (level: string) => {
   switch (level) {
@@ -25,7 +30,7 @@ export const getLevelBgColor = (level: string) => {
     case "C1 - C2":
       return "var(--bg-warning-color1)";
   }
-}
+};
 export const getLevelTextColor = (level: string) => {
   switch (level) {
     case "A1 - A2":
@@ -35,7 +40,7 @@ export const getLevelTextColor = (level: string) => {
     case "C1 - C2":
       return "var(--text-warning-color1)";
   }
-}
+};
 
 export default function CoursesTable({
   coursesData,
@@ -43,28 +48,28 @@ export default function CoursesTable({
   handleEdit,
   handleDelete,
 }: {
-  coursesData: ICourse[],
-  searchKey: string,
-  handleEdit: (course: any) => void,
-  handleDelete: (id: any) => void
+  coursesData: IGetAllCourses[];
+  searchKey: string;
+  handleEdit: (course: any) => void;
+  handleDelete: (id: any) => void;
 }) {
   const { t } = useTranslation("common");
-  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
-  const [orderBy, setOrderBy] = useState<string>('id');
+  const [order, setOrder] = useState<"asc" | "desc">("asc");
+  const [orderBy, setOrderBy] = useState<string>("id");
 
   const handleRequestSort = (property: string) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
   const sortedCourses = [...coursesData].sort((a, b) => {
-    if (typeof a[orderBy] === 'number') {
-      return order === 'asc'
+    if (typeof a[orderBy] === "number") {
+      return order === "asc"
         ? a[orderBy] - b[orderBy]
         : b[orderBy] - a[orderBy];
     }
-    return order === 'asc'
+    return order === "asc"
       ? a[orderBy].localeCompare(b[orderBy])
       : b[orderBy].localeCompare(a[orderBy]);
   });
@@ -72,124 +77,143 @@ export default function CoursesTable({
   return (
     <TableContainer
       sx={{
-        '&::-webkit-scrollbar': {
-          width: '7px',
-          height: '7px'
+        "&::-webkit-scrollbar": {
+          width: "7px",
+          height: "7px",
         },
-        '&::-webkit-scrollbar-thumb': {
-          backgroundColor: 'var(--scrollbar-color)',
-          borderRadius: '10px'
-        }
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "var(--scrollbar-color)",
+          borderRadius: "10px",
+        },
       }}
     >
       <Table stickyHeader>
         <TableHead>
           <TableRow
             sx={{
-              backgroundColor: '#9affb3',
-              '& th': {
-                backgroundColor: '#9affb3' // Áp dụng cho các ô
+              backgroundColor: "#9affb3",
+              "& th": {
+                backgroundColor: "#9affb3", // Áp dụng cho các ô
               },
-              '&:last-child td, &:last-child th': {
-                border: 'none'
-              }
+              "&:last-child td, &:last-child th": {
+                border: "none",
+              },
             }}
           >
-            <TableCell align="center" onClick={() => handleRequestSort('id')}>
+            <TableCell
+              align="center"
+              onClick={() => handleRequestSort("title")}
+            >
               <TableSortLabel
-                active={orderBy === 'id'}
-                direction={orderBy === 'id' ? order : 'asc'}
+                active={orderBy === "title"}
+                direction={orderBy === "title" ? order : "asc"}
                 sx={{
-                  display: 'inline-flex',
-                  justifyContent: 'center',
-                  '& .MuiTableSortLabel-icon': {
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  "& .MuiTableSortLabel-icon": {
                     margin: 0,
-                    position: 'absolute',
-                    right: '-20px',
-                  }
-                }}
-              >
-                <b>ID</b>
-              </TableSortLabel>
-            </TableCell>
-            <TableCell align="center" onClick={() => handleRequestSort('title')}>
-              <TableSortLabel
-                active={orderBy === 'title'}
-                direction={orderBy === 'title' ? order : 'asc'}
-                sx={{
-                  display: 'inline-flex',
-                  justifyContent: 'center',
-                  '& .MuiTableSortLabel-icon': {
-                    margin: 0,
-                    position: 'absolute',
-                    right: '-25px',
-                  }
+                    position: "absolute",
+                    right: "-25px",
+                  },
                 }}
               >
                 <b>{t("COMMON.COURSES.TABLE.title")}</b>
               </TableSortLabel>
             </TableCell>
-            <TableCell align="center" onClick={() => handleRequestSort('topic')}>
+            <TableCell
+              align="center"
+              onClick={() => handleRequestSort("topic")}
+            >
               <TableSortLabel
-                active={orderBy === 'topic'}
-                direction={orderBy === 'topic' ? order : 'asc'}
+                active={orderBy === "topic"}
+                direction={orderBy === "topic" ? order : "asc"}
                 sx={{
-                  display: 'inline-flex',
-                  justifyContent: 'center',
-                  '& .MuiTableSortLabel-icon': {
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  "& .MuiTableSortLabel-icon": {
                     margin: 0,
-                    position: 'absolute',
-                    right: '-25px',
-                  }
+                    position: "absolute",
+                    right: "-25px",
+                  },
                 }}
               >
                 <b>{t("COMMON.COURSES.TABLE.topic")}</b>
               </TableSortLabel>
             </TableCell>
-            <TableCell align="center" onClick={() => handleRequestSort('level')}>
+            <TableCell
+              align="center"
+              onClick={() => handleRequestSort("level")}
+            >
               <TableSortLabel
-                active={orderBy === 'level'}
-                direction={orderBy === 'level' ? order : 'asc'}
+                active={orderBy === "level"}
+                direction={orderBy === "level" ? order : "asc"}
                 sx={{
-                  display: 'inline-flex',
-                  '& .MuiTableSortLabel-icon': {
+                  display: "inline-flex",
+                  "& .MuiTableSortLabel-icon": {
                     margin: 0,
-                    position: 'absolute',
-                    right: '-20px',
-                  }
+                    position: "absolute",
+                    right: "-20px",
+                  },
                 }}
               >
                 <b>{t("COMMON.COURSES.TABLE.level")}</b>
               </TableSortLabel>
             </TableCell>
-            <TableCell align="center" onClick={() => handleRequestSort('description')}>
+
+            <TableCell
+              align="center"
+              onClick={() => handleRequestSort("price")}
+            >
               <TableSortLabel
-                active={orderBy === 'description'}
-                direction={orderBy === 'description' ? order : 'asc'}
+                active={orderBy === "price"}
+                direction={orderBy === "price" ? order : "asc"}
                 sx={{
-                  display: 'inline-flex',
-                  '& .MuiTableSortLabel-icon': {
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  "& .MuiTableSortLabel-icon": {
                     margin: 0,
-                    position: 'absolute',
-                    right: '-25px'
-                  }
+                    position: "absolute",
+                    right: "-20px",
+                  },
+                }}
+              >
+                <b>Price</b>
+              </TableSortLabel>
+            </TableCell>
+            <TableCell
+              align="center"
+              onClick={() => handleRequestSort("description")}
+            >
+              <TableSortLabel
+                active={orderBy === "description"}
+                direction={orderBy === "description" ? order : "asc"}
+                sx={{
+                  display: "inline-flex",
+                  "& .MuiTableSortLabel-icon": {
+                    margin: 0,
+                    position: "absolute",
+                    right: "-25px",
+                  },
                 }}
               >
                 <b>{t("COMMON.COURSES.TABLE.description")}</b>
               </TableSortLabel>
             </TableCell>
-            <TableCell align="center" onClick={() => handleRequestSort('image')}>
+            <TableCell
+              align="center"
+              onClick={() => handleRequestSort("image")}
+            >
               <TableSortLabel
-                active={orderBy === 'image'}
-                direction={orderBy === 'image' ? order : 'asc'}
+                active={orderBy === "image"}
+                direction={orderBy === "image" ? order : "asc"}
                 sx={{
-                  display: 'inline-flex',
-                  justifyContent: 'center',
-                  '& .MuiTableSortLabel-icon': {
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  "& .MuiTableSortLabel-icon": {
                     margin: 0,
-                    position: 'absolute',
-                    right: '-25px',
-                  }
+                    position: "absolute",
+                    right: "-25px",
+                  },
                 }}
               >
                 <b>{t("COMMON.COURSES.TABLE.image")}</b>
@@ -205,25 +229,16 @@ export default function CoursesTable({
           {sortedCourses.map((course) => (
             <TableRow key={course.id} hover>
               {/* ID */}
+
+              {/* Title */}
               <TableCell
                 align="center"
                 sx={{
                   color: "var(--text-color)",
-                  width: "5%",
-                  fontWeight: 'bold',
-                }}
-              >
-                {course.id}
-              </TableCell>
-
-              {/* Title */}
-              <TableCell
-                sx={{
-                  color: "var(--text-color)",
                   maxWidth: { xs: 100, md: 150, lg: 200 },
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
                 }}
                 title={course.title}
               >
@@ -235,14 +250,14 @@ export default function CoursesTable({
                 align="center"
                 sx={{
                   color: "var(--text-color)",
-                  maxWidth: { xs: 100, md: 150, },
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
+                  maxWidth: { xs: 100, md: 150 },
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
                 }}
-                title={course.topic}
+                title={course.topics?.name}
               >
-                {course.topic}
+                {course.topics?.name}
               </TableCell>
 
               {/* Level */}
@@ -254,27 +269,39 @@ export default function CoursesTable({
               >
                 <Box
                   sx={{
-                    display: 'inline-flex',
+                    display: "inline-flex",
                     paddingX: 1.5,
                     paddingY: 0.5,
                     borderRadius: 2,
                     backgroundColor: getLevelBgColor(course.level),
                     color: getLevelTextColor(course.level),
-                    fontWeight: 'bold',
+                    fontWeight: "bold",
                   }}
                 >
                   {course.level}
                 </Box>
               </TableCell>
 
+              <TableCell
+                align="center"
+                sx={{
+                  color: "var(--text-color)",
+                  width: "5%",
+                  fontWeight: "bold",
+                }}
+              >
+                {course.price}
+              </TableCell>
+
               {/* Description */}
               <TableCell
+                align="center"
                 sx={{
                   color: "var(--text-color)",
                   maxWidth: { xs: 100, md: 150, lg: 200 },
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
                 }}
                 title={course.description}
               >
@@ -287,13 +314,22 @@ export default function CoursesTable({
                 sx={{
                   color: "var(--text-color)",
                   maxWidth: { xs: 100, md: 150, lg: 200 },
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
                 }}
-                title={course.image}
+                title={course.image_url}
               >
-                {course.image}
+                <img
+                  src={course.image_url}
+                  alt="Course Thumbnail"
+                  style={{
+                    width: "100%",
+                    maxHeight: 100,
+                    objectFit: "cover",
+                    borderRadius: 4,
+                  }}
+                />
               </TableCell>
 
               {/* Actions */}
@@ -304,17 +340,22 @@ export default function CoursesTable({
                   padding: 0,
                 }}
               >
-                <IconButton size="small" sx={{ color: '#00d4ff' }}
-                  onClick={() => handleEdit(course)}>
+                <IconButton
+                  size="small"
+                  sx={{ color: "#00d4ff" }}
+                  onClick={() => handleEdit(course)}
+                >
                   <EditOutlined fontSize="small" />
                 </IconButton>
-                <IconButton size="small" sx={{ color: '#ff0000' }}
-                  onClick={() => handleDelete(course.id)}>
+                <IconButton
+                  size="small"
+                  sx={{ color: "#ff0000" }}
+                  onClick={() => handleDelete(course.id)}
+                >
                   <DeleteOutline fontSize="small" />
                 </IconButton>
               </TableCell>
             </TableRow>
-
           ))}
           {coursesData.length === 0 && (
             <TableRow>
@@ -326,5 +367,5 @@ export default function CoursesTable({
         </TableBody>
       </Table>
     </TableContainer>
-  )
+  );
 }
